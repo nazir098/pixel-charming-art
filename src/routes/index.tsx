@@ -12,13 +12,14 @@ import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import heroTech from "@/assets/hero-technician.jpg";
 import serverRack from "@/assets/server-rack.jpg";
-import gScreen from "@/assets/gallery-screen.jpg";
-import gBattery from "@/assets/gallery-battery.jpg";
-import gKeyboard from "@/assets/gallery-keyboard.jpg";
-import gNetwork from "@/assets/gallery-network.jpg";
-import gAv from "@/assets/gallery-av.jpg";
-import gSsd from "@/assets/gallery-ssd.jpg";
-import gRepair from "@/assets/repair-closeup.jpg";
+import gMarket from "@/assets/nehru-market.jpg";
+import gTech from "@/assets/nehru-technician.jpg";
+import gLaptops from "@/assets/nehru-laptops.jpg";
+import gScreen from "@/assets/nehru-screen.jpg";
+import gParts from "@/assets/nehru-parts.jpg";
+import gDoorstep from "@/assets/nehru-doorstep.jpg";
+import gNetwork from "@/assets/nehru-network.jpg";
+import gMobo from "@/assets/nehru-motherboard.jpg";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -38,14 +39,14 @@ const services = [
 ];
 
 const galleryItems: GalleryItem[] = [
-  { src: gRepair, alt: "Motherboard repair", title: "Component-level Repair", category: "Workshop", span: "lg" },
-  { src: gScreen, alt: "Screen replacement", title: "Screen Replacement", category: "Service", span: "md" },
-  { src: gBattery, alt: "Battery replacement", title: "Battery Service", category: "Service", span: "tall" },
-  { src: gKeyboard, alt: "Keyboard repair", title: "Keyboard Repair", category: "Service", span: "md" },
-  { src: gSsd, alt: "SSD upgrade", title: "SSD & RAM Upgrade", category: "Upgrade", span: "md" },
-  { src: gNetwork, alt: "Network deployment", title: "Network Setup", category: "Enterprise", span: "wide" },
-  { src: gAv, alt: "AV solutions", title: "AV Solutions", category: "Enterprise", span: "md" },
-  { alt: "Coming soon", span: "md" },
+  { src: gMarket, alt: "Nehru Place computer market", title: "Nehru Place Lanes", category: "Where it begins", span: "lg" },
+  { src: gTech, alt: "Technician at workbench", title: "Chip-level Repair", category: "Workshop", span: "md" },
+  { src: gMobo, alt: "Motherboard diagnostics", title: "Board Diagnostics", category: "Workshop", span: "tall" },
+  { src: gLaptops, alt: "Stack of laptops being repaired", title: "Daily Repairs", category: "Workshop", span: "md" },
+  { src: gScreen, alt: "Laptop screen replacement", title: "Screen Replacement", category: "Service", span: "md" },
+  { src: gNetwork, alt: "Server cabling on-site", title: "Network Setup", category: "Enterprise", span: "wide" },
+  { src: gParts, alt: "Genuine RAM and SSD parts", title: "Genuine Parts", category: "Sourcing", span: "md" },
+  { src: gDoorstep, alt: "Wishtek doorstep delivery", title: "Doorstep Service", category: "Delivery", span: "md" },
 ];
 
 function HomePage() {
@@ -224,7 +225,11 @@ function HomePage() {
       </section>
 
       {/* GALLERY */}
-      <ImageGallery items={galleryItems} />
+      <ImageGallery
+        items={galleryItems}
+        title="Straight from the heart of Nehru Place"
+        subtitle="Decades of repair expertise sourced from Delhi's largest IT market — now at your doorstep across Gurugram & NCR."
+      />
 
       {/* TESTIMONIALS */}
       <section className="bg-secondary/40 py-20 md:py-28">
