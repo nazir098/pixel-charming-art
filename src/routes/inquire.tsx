@@ -146,7 +146,7 @@ function InquirePage() {
               />
               <div className="flex items-center justify-between bg-secondary/50 p-4">
                 <span className="text-sm font-bold">M3M Urbana, Sector 67</span>
-                <a href="https://maps.google.com/?q=M3M+Urbana+Sector+67+Gurugram" target="_blank" rel="noopener" className="text-sm font-bold text-primary hover:underline">
+                <a href="https://maps.app.goo.gl/AUxvGZ8yiwG6SMLy7" target="_blank" rel="noopener" className="text-sm font-bold text-primary hover:underline">
                   Open Maps
                 </a>
               </div>
