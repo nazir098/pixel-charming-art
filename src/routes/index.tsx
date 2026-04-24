@@ -12,7 +12,7 @@ import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import heroTech from "@/assets/hero-technician.jpg";
 import serverRack from "@/assets/server-rack.jpg";
-import gMarket from "@/assets/nehru-market.jpg";
+
 import gTech from "@/assets/nehru-technician.jpg";
 import gLaptops from "@/assets/nehru-laptops.jpg";
 import gScreen from "@/assets/nehru-screen.jpg";
@@ -39,8 +39,7 @@ const services = [
 ];
 
 const galleryItems: GalleryItem[] = [
-  { src: gMarket, alt: "Nehru Place computer market", title: "Nehru Place Lanes", category: "Where it begins", span: "lg" },
-  { src: gTech, alt: "Technician at workbench", title: "Chip-level Repair", category: "Workshop", span: "md" },
+  { src: gTech, alt: "Technician at workbench", title: "Chip-level Repair", category: "Workshop", span: "lg" },
   { src: gMobo, alt: "Motherboard diagnostics", title: "Board Diagnostics", category: "Workshop", span: "tall" },
   { src: gLaptops, alt: "Stack of laptops being repaired", title: "Daily Repairs", category: "Workshop", span: "md" },
   { src: gScreen, alt: "Laptop screen replacement", title: "Screen Replacement", category: "Service", span: "md" },
