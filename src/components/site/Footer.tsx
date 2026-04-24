@@ -40,9 +40,9 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">Contact</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> 8851930450</li>
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> support@wishtek.tech</li>
-              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" /> Sector 67, Gurugram, IN</li>
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /><span>8851930450</span></li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /><span>support@wishtek.tech</span></li>
+              <li className="flex items-start gap-2"><MapPin className="mt-0.5 h-4 w-4 text-primary" /><span>Sector 67, Gurugram, IN</span></li>
             </ul>
           </div>
         </div>

@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandStrip } from "@/components/site/BrandStrip";
 import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
+import { HeroCarousel } from "@/components/site/HeroCarousel";
 import heroTech from "@/assets/hero-technician.jpg";
 import serverRack from "@/assets/server-rack.jpg";
 import gScreen from "@/assets/gallery-screen.jpg";
@@ -97,21 +98,12 @@ function HomePage() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative"
           >
-            <div className="absolute -inset-6 -z-10 rounded-[3rem] bg-gradient-to-br from-primary/30 to-primary-glow/20 blur-3xl" />
-            <div className="relative overflow-hidden rounded-3xl bg-accent shadow-elegant">
-              <img src={heroTech} alt="Wishtek certified technician" className="h-full w-full object-cover" />
-            </div>
-            <div className="absolute -bottom-4 -left-4 rounded-2xl bg-card p-4 shadow-card md:-left-8">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                  <Shield className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-foreground">90-Day Warranty</p>
-                  <p className="text-xs text-muted-foreground">Service guarantee</p>
-                </div>
-              </div>
-            </div>
+            <HeroCarousel
+              slides={[
+                { src: heroTech, alt: "Wishtek certified technician", badge: "Certified Tech", title: "Expert at Your Doorstep", caption: "10+ years of hands-on laptop repair experience." },
+                { src: serverRack, alt: "Enterprise server room", badge: "Enterprise Ready", title: "Infrastructure & AMC", caption: "Powering 150+ businesses across Delhi NCR." },
+              ]}
+            />
           </motion.div>
         </div>
       </section>
