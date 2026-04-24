@@ -225,7 +225,11 @@ function HomePage() {
       </section>
 
       {/* GALLERY */}
-      <ImageGallery items={galleryItems} />
+      <ImageGallery
+        items={galleryItems}
+        title="Straight from the heart of Nehru Place"
+        subtitle="Decades of repair expertise sourced from Delhi's largest IT market — now at your doorstep across Gurugram & NCR."
+      />
 
       {/* TESTIMONIALS */}
       <section className="bg-secondary/40 py-20 md:py-28">
