@@ -100,8 +100,8 @@ function HomePage() {
           >
             <HeroCarousel
               slides={[
-                { src: heroTech, alt: "Wishtek certified technician", badge: "Certified Tech", title: "Expert at Your Doorstep", caption: "10+ years of hands-on laptop repair experience." },
-                { src: serverRack, alt: "Enterprise server room", badge: "Enterprise Ready", title: "Infrastructure & AMC", caption: "Powering 150+ businesses across Delhi NCR." },
+                { src: heroTech, alt: "Wishtek certified technician", cardTitle: "90-Day Warranty", cardCaption: "All repairs come with our official service guarantee for peace of mind." },
+                { src: serverRack, alt: "Enterprise server room", cardTitle: "Secure & Scalable", cardCaption: "End-to-end management for modern enterprise requirements." },
               ]}
             />
           </motion.div>
