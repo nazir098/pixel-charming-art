@@ -12,7 +12,7 @@ import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import heroTech from "@/assets/hero-technician.jpg";
 import serverRack from "@/assets/server-rack.jpg";
-import gMarket from "@/assets/nehru-market.jpg";
+
 import gTech from "@/assets/nehru-technician.jpg";
 import gLaptops from "@/assets/nehru-laptops.jpg";
 import gScreen from "@/assets/nehru-screen.jpg";
