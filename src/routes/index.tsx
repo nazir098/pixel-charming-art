@@ -18,7 +18,7 @@ import gLaptops from "@/assets/nehru-laptops.jpg";
 import gScreen from "@/assets/nehru-screen.jpg";
 import gParts from "@/assets/nehru-parts.jpg";
 import gDoorstep from "@/assets/nehru-doorstep.jpg";
-import gNetwork from "@/assets/nehru-network.jpg";
+import gNetwork from "@/assets/nehru-it-infra.jpg";
 import gMobo from "@/assets/nehru-motherboard.jpg";
 
 export const Route = createFileRoute("/")({
