@@ -21,6 +21,14 @@ export type HeroSlide = {
 export function HeroCarousel({ slides, autoMs = 6000 }: { slides: HeroSlide[]; autoMs?: number }) {
   const [i, setI] = useState(0);
 
+  // Preload non-first images after mount so slide transitions are instant
+  useEffect(() => {
+    slides.slice(1).forEach((s) => {
+      const img = new Image();
+      img.src = s.image;
+    });
+  }, [slides]);
+
   useEffect(() => {
     if (slides.length < 2) return;
     const t = setInterval(() => setI((p) => (p + 1) % slides.length), autoMs);
@@ -92,10 +100,13 @@ export function HeroCarousel({ slides, autoMs = 6000 }: { slides: HeroSlide[]; a
               key={`img-${i}`}
               src={s.image}
               alt={s.imageAlt}
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 1, scale: 1 }}
+              loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
+              {...(i === 0 ? { fetchPriority: "high" as const } : {})}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.45 }}
               className="absolute inset-0 h-full w-full object-cover"
             />
           </AnimatePresence>
