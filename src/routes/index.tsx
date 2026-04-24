@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandStrip } from "@/components/site/BrandStrip";
 import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
+import { HeroCarousel } from "@/components/site/HeroCarousel";
 import heroTech from "@/assets/hero-technician.jpg";
 import serverRack from "@/assets/server-rack.jpg";
 import gScreen from "@/assets/gallery-screen.jpg";
