@@ -54,58 +54,36 @@ function HomePage() {
       {/* HERO */}
       <section className="relative overflow-hidden gradient-hero">
         <div className="absolute inset-0 grid-pattern opacity-40" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:px-8 md:py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
-              <Shield className="h-3.5 w-3.5" /> Professional IT Support
-            </span>
-            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] text-foreground md:text-6xl">
-              Doorstep Laptop Repair —{" "}
-              <span className="text-gradient">Fast, Reliable & Hassle-Free</span>
-            </h1>
-            <p className="mt-5 max-w-lg text-base text-muted-foreground md:text-lg">
-              Get your devices fixed by certified experts without leaving your home.
-              Transparent pricing and premium parts guaranteed.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="gradient-primary font-semibold shadow-elegant">
-                <Link to="/book">Book Service Now <ArrowRight className="ml-1 h-4 w-4" /></Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <Link to="/pricing">View Pricing</Link>
-              </Button>
-            </div>
-            <div className="mt-8 flex items-center gap-6 text-sm">
-              <div className="flex items-center gap-1.5">
-                <div className="flex">{[...Array(5)].map((_, i) => <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />)}</div>
-                <span className="font-semibold text-foreground">4.9</span>
-                <span className="text-muted-foreground">/ 2k+ reviews</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-foreground">
-                <BadgeCheck className="h-4 w-4 text-primary" />
-                <span className="font-semibold">90-Day Warranty</span>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative"
-          >
-            <HeroCarousel
-              slides={[
-                { src: heroTech, alt: "Wishtek certified technician", cardTitle: "90-Day Warranty", cardCaption: "All repairs come with our official service guarantee for peace of mind." },
-                { src: serverRack, alt: "Enterprise server room", cardTitle: "Secure & Scalable", cardCaption: "End-to-end management for modern enterprise requirements." },
-              ]}
-            />
-          </motion.div>
-        </div>
+        <HeroCarousel
+          slides={[
+            {
+              eyebrow: "Professional IT Support",
+              titleStart: "Doorstep Laptop Repair —",
+              titleAccent: "Fast, Reliable & Hassle-Free",
+              description:
+                "Get your devices fixed by certified experts without leaving your home. Transparent pricing and premium parts guaranteed.",
+              primaryCta: { label: "Book Service Now", to: "/book" },
+              secondaryCta: { label: "View Pricing", to: "/pricing" },
+              image: heroTech,
+              imageAlt: "Wishtek certified technician",
+              cardTitle: "90-Day Warranty",
+              cardCaption: "All repairs come with our official service guarantee for peace of mind.",
+            },
+            {
+              eyebrow: "Corporate Managed Services",
+              titleStart: "Comprehensive IT",
+              titleAccent: "Solutions for Your Business",
+              description:
+                "From network infrastructure to cloud backup, we provide scalable IT services tailored for growth.",
+              primaryCta: { label: "Explore All Services", to: "/services" },
+              secondaryCta: { label: "Contact Sales", to: "/inquire" },
+              image: serverRack,
+              imageAlt: "Enterprise server room",
+              cardTitle: "Secure & Scalable",
+              cardCaption: "End-to-end management for modern enterprise requirements.",
+            },
+          ]}
+        />
       </section>
 
       <BrandStrip />
