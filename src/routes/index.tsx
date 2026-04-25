@@ -42,12 +42,7 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const services = [
-  { icon: Monitor, title: "Screen Replacement", desc: "Cracked or dead pixels? We replace OEM-grade panels same-day.", price: "₹1,499" },
-  { icon: Battery, title: "Battery Service", desc: "Drain issues or swelling? Premium OEM battery replacements available.", price: "₹1,499" },
-  { icon: Keyboard, title: "Keyboard Repair", desc: "Sticky keys or non-responsive boards. Full replacements for all layouts.", price: "₹1,200" },
-  { icon: HardDrive, title: "Software & OS", desc: "Slow laptop, virus removal, OS install, and data recovery services.", price: "₹599" },
-];
+const services = getHomeServicesSync();
 
 const galleryItems: GalleryItem[] = [
   { src: gTech, alt: "Technician at workbench", title: "Chip-level Repair", category: "Workshop", span: "lg" },
