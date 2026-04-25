@@ -271,7 +271,50 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* SERVICE AREAS */}
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mb-10 text-center">
+            <h2 className="font-display text-3xl font-extrabold md:text-5xl">Doorstep Laptop Repair Service Areas</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+              Free pickup & delivery across Delhi NCR. Same-day service available in most localities — book before 12 PM.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+            {[
+              { city: "Gurgaon", areas: "Sector 1-115, DLF, Sohna Road, Golf Course, MG Road, Cyber City" },
+              { city: "Delhi", areas: "South Delhi, Saket, Vasant Kunj, Dwarka, Nehru Place, Connaught Place" },
+              { city: "Noida", areas: "Sector 1-150, Greater Noida, Noida Extension, Expressway" },
+              { city: "Faridabad", areas: "NIT, Sector 1-89, Greater Faridabad, Neharpar" },
+              { city: "Ghaziabad", areas: "Indirapuram, Vaishali, Vasundhara, Raj Nagar, Kaushambi" },
+            ].map((c) => (
+              <Card key={c.city} className="p-5 hover-lift">
+                <h3 className="font-display text-lg font-bold text-primary">Laptop Repair in {c.city}</h3>
+                <p className="mt-2 text-xs text-muted-foreground">{c.areas}</p>
+                <Link to="/book" className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary hover:gap-2 transition-all">
+                  Book pickup <ArrowRight className="h-3 w-3" />
+                </Link>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <FAQ
+        title="Laptop Repair & IT Services — FAQs"
+        subtitle="Everything you need to know about our doorstep laptop repair and enterprise IT solutions."
+        items={[
+          { q: "Do you really offer doorstep laptop repair across Delhi NCR?", a: "Yes. We pick up your laptop from your home or office anywhere in Gurgaon, Delhi, Noida, Faridabad and Ghaziabad — repair it at our authorised facility and deliver it back, usually within 24-48 hours. Pickup and delivery are free." },
+          { q: "How much does a typical laptop repair cost?", a: "Screen replacement starts at ₹1,499, battery from ₹899, keyboard from ₹1,200, and software/OS install from ₹599. Final pricing depends on your laptop model. We share a transparent quote before any work begins — no hidden charges." },
+          { q: "Which laptop brands do you repair?", a: "We service all major brands including Dell, HP, Lenovo, Apple MacBook, Asus, Acer, MSI, Microsoft Surface, Samsung and more — both consumer and business models." },
+          { q: "Do you provide a warranty on repairs?", a: "Yes. Every repair carries a 90-day service warranty covering both parts and workmanship. If the same issue recurs within 90 days, we fix it free." },
+          { q: "What is included in your enterprise AMC services?", a: "Our Annual Maintenance Contracts cover preventive and breakdown maintenance for laptops, desktops, servers, networking equipment and peripherals — including on-site engineer visits, remote support, asset tracking and quarterly health checks." },
+          { q: "How quickly can a technician reach me?", a: "For doorstep pickup in Gurgaon and central Delhi NCR, our agent typically arrives within 60-120 minutes of booking during working hours (10 AM - 8 PM, Mon-Sat)." },
+          { q: "Is my data safe during repair?", a: "Absolutely. We follow strict data privacy protocols, never access personal files unless required for the fix, and offer secure data backup before any storage-related repair." },
+        ]}
+      />
+
       <section className="gradient-deep py-20 text-primary-foreground">
         <div className="mx-auto max-w-4xl px-4 text-center md:px-8">
           <h2 className="font-display text-3xl font-extrabold md:text-5xl">Ready to get your laptop fixed?</h2>
