@@ -12,6 +12,9 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 
 export const Route = createFileRoute("/inquire")({
   component: InquirePage,
+  validateSearch: (search: Record<string, unknown>): { service?: string } => ({
+    service: typeof search.service === "string" ? search.service : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Get a Free IT Quote in Gurgaon & Delhi NCR | WISHTEK" },
