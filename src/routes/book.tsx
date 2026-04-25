@@ -45,9 +45,9 @@ function BookPage() {
     <SiteLayout>
       <section className="gradient-hero py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h1 className="font-display text-4xl font-extrabold md:text-6xl">Book Your Repair</h1>
+          <h1 className="font-display text-4xl font-extrabold md:text-6xl">Book Doorstep Laptop Repair in Delhi NCR</h1>
           <p className="mt-4 max-w-xl text-muted-foreground md:text-lg">
-            Professional IT services at your doorstep. Fill in the details below to schedule a certified technician for your laptop repair.
+            Free pickup & delivery across Gurgaon, Delhi, Noida, Faridabad and Ghaziabad. Fill in the details below to schedule a certified WISHTEK technician for your laptop repair.
           </p>
         </div>
       </section>
