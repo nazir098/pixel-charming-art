@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { getPortfolioServiceSync, getPortfolioServicesSync } from "@/lib/api/services";
+import { CONTACT, telHref } from "@/lib/contact";
 
 export const Route = createFileRoute("/services/$serviceId")({
   component: ServiceDetailPage,
@@ -93,7 +94,7 @@ function ServiceDetailPage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary">
-                <a href="tel:8851930450">Call 8851930450</a>
+                <a href={telHref}>Call {CONTACT.phone}</a>
               </Button>
             </div>
           </motion.div>
