@@ -1,13 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import {
-  Monitor, Server, CloudUpload, Layers, Network, Shield, ClipboardCheck,
-  Smartphone, Video, Zap, Code2, Award, ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import enterpriseHero from "@/assets/enterprise-hero.jpg";
+import { getPortfolioServicesSync } from "@/lib/api/services";
 
 export const Route = createFileRoute("/services")({
   component: ServicesPage,
