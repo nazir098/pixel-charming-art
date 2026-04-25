@@ -76,9 +76,9 @@ function ServicesPage() {
                 transition={{ duration: 0.4, delay: i * 0.04 }}
                 className="h-full"
               >
-                <Card className="group relative flex h-full flex-col border-border p-7 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
-                  {/* Subtle left accent bar that grows on hover */}
-                  <span className="absolute left-0 top-6 h-0 w-1 rounded-r-full bg-primary transition-all duration-300 group-hover:h-12" />
+                <Card className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
+                  {/* Subtle bottom accent bar that grows on hover */}
+                  <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
 
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
                     <s.icon className="h-6 w-6" />
