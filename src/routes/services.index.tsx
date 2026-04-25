@@ -77,13 +77,13 @@ function ServicesPage() {
                 whileHover={{ y: -8 }}
                 className="h-full"
               >
-                <Card className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 hover:border-primary hover:shadow-elegant">
-                  {/* Gradient glow on hover */}
-                  <div className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(circle at top right, hsl(var(--primary) / 0.12), transparent 60%)" }} />
+                <Card className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_20px_50px_-15px_hsl(var(--primary)/0.35)]">
+                  {/* Soft primary glow on hover */}
+                  <div className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(circle at top right, hsl(var(--primary) / 0.15), transparent 65%)" }} />
                   {/* Top accent bar */}
                   <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-primary transition-transform duration-500 group-hover:scale-x-100" />
 
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:gradient-primary group-hover:text-primary-foreground group-hover:shadow-lg">
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
                     <s.icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-display text-lg font-bold transition-colors duration-300 group-hover:text-primary">{s.title}</h3>
