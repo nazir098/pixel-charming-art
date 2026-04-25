@@ -92,6 +92,7 @@ export interface PortfolioService {
   icon: LucideIcon;
   title: string;
   desc: string;
+  detail?: ServiceDetailDTO;
 }
 
 /* ───────────── Mock data (replace with backend later) ───────────── */
