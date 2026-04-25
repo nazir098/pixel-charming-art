@@ -7,7 +7,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import enterpriseHero from "@/assets/enterprise-hero.jpg";
 import { getPortfolioServicesSync } from "@/lib/api/services";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   component: ServicesPage,
   head: () => ({
     meta: [
