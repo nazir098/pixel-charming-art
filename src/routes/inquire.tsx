@@ -9,9 +9,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { getPortfolioServicesSync } from "@/lib/api/services";
 
 export const Route = createFileRoute("/inquire")({
   component: InquirePage,
+  validateSearch: (search: Record<string, unknown>): { service?: string } => ({
+    service: typeof search.service === "string" ? search.service : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Get a Free IT Quote in Gurgaon & Delhi NCR | WISHTEK" },
@@ -27,7 +31,11 @@ export const Route = createFileRoute("/inquire")({
 });
 
 function InquirePage() {
+  const { service: preselected } = Route.useSearch();
   const [submitting, setSubmitting] = useState(false);
+  const [serviceValue, setServiceValue] = useState<string | undefined>(preselected);
+  const portfolio = getPortfolioServicesSync();
+  const selectedService = portfolio.find((s) => s.id === serviceValue);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,16 +77,25 @@ function InquirePage() {
                 </div>
                 <div className="space-y-2">
                   <Label>Service Category</Label>
-                  <Select>
-                    <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
+                  <Select value={serviceValue} onValueChange={setServiceValue}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a service">
+                        {selectedService?.title}
+                      </SelectValue>
+                    </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="laptop">Laptop Repair</SelectItem>
-                      <SelectItem value="amc">AMC / Maintenance</SelectItem>
-                      <SelectItem value="network">Network Setup</SelectItem>
-                      <SelectItem value="security">Security Solutions</SelectItem>
+                      <SelectItem value="laptop-repair">Doorstep Laptop Repair</SelectItem>
+                      {portfolio.map((s) => (
+                        <SelectItem key={s.id} value={s.id}>{s.title}</SelectItem>
+                      ))}
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
+                  {selectedService && (
+                    <p className="text-xs text-muted-foreground">
+                      Inquiring about: <span className="font-semibold text-foreground">{selectedService.title}</span>
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label>Preferred Date</Label>
