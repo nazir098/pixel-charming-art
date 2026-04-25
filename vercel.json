@@ -1,7 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "bun run build",
-  "outputDirectory": ".vercel/output",
+  "installCommand": "bun install",
+  "outputDirectory": "dist/client",
   "framework": null,
-  "installCommand": "bun install"
+  "rewrites": [
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/(.*)", "destination": "/api/index" }
+  ]
 }
