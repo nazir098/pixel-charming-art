@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Smartphone, Battery, Keyboard, Cpu, Droplets, ShieldCheck, Receipt } from "lucide-react";
+import { ShieldCheck, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import repairImg from "@/assets/repair-closeup.jpg";
+import { getRepairRatesSync } from "@/lib/api/services";
 
 export const Route = createFileRoute("/pricing")({
   component: PricingPage,
@@ -22,13 +23,7 @@ export const Route = createFileRoute("/pricing")({
   }),
 });
 
-const rates = [
-  { icon: Smartphone, label: "Screen Replacement", price: "₹1,499" },
-  { icon: Battery, label: "Battery Replacement", price: "₹899" },
-  { icon: Keyboard, label: "Keyboard Repair", price: "₹1,200" },
-  { icon: Cpu, label: "RAM/SSD Upgrade", price: "₹499" },
-  { icon: Droplets, label: "Liquid Damage Diagnostics", price: "₹750" },
-];
+const rates = getRepairRatesSync();
 
 function PricingPage() {
   return (
