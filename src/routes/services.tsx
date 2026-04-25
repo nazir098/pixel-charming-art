@@ -13,9 +13,18 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
   head: () => ({
     meta: [
-      { title: "Enterprise IT Solutions — WISHTEK Technology" },
-      { name: "description", content: "End-to-end IT services for the modern enterprise: compute, networking, security, AMC, asset management, AV solutions and more." },
+      { title: "IT Solutions & AMC Services in Gurgaon, Delhi NCR | WISHTEK" },
+      { name: "description", content: "End-to-end IT solutions in Delhi NCR — networking, server, storage & backup, security, AMC, asset management, AV & low-voltage. Trusted by 150+ businesses." },
+      { name: "keywords", content: "IT solutions provider Gurgaon, networking solutions Delhi NCR, AMC services, IT infrastructure solutions, enterprise IT support Noida" },
+      { property: "og:title", content: "IT Solutions & AMC Services in Gurgaon, Delhi NCR | WISHTEK" },
+      { property: "og:description", content: "Networking, server, storage, security, AMC and managed IT for SMBs and enterprises across Delhi NCR." },
+      { property: "og:url", content: "https://wishtek.tech/services" },
+      { property: "og:image", content: "https://wishtek.tech/og-services.jpg" },
+      { name: "twitter:title", content: "IT Solutions & AMC Services in Gurgaon, Delhi NCR | WISHTEK" },
+      { name: "twitter:description", content: "End-to-end IT infrastructure & AMC across Delhi NCR." },
+      { name: "twitter:image", content: "https://wishtek.tech/og-services.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://wishtek.tech/services" }],
   }),
 });
 
@@ -44,10 +53,10 @@ function ServicesPage() {
               Enterprise Solutions
             </span>
             <h1 className="mt-4 font-display text-4xl font-extrabold md:text-6xl">
-              Enterprise IT <span className="text-gradient">Solutions</span>
+              Enterprise IT <span className="text-gradient">Solutions in Delhi NCR</span>
             </h1>
             <p className="mt-5 max-w-lg text-muted-foreground md:text-lg">
-              Empowering your business with scalable, reliable, and high-performance infrastructure. We provide end-to-end technology services designed for the modern enterprise landscape.
+              Networking, servers, storage & backup, security, AMC and managed IT support — engineered for businesses across Gurgaon, Delhi, Noida, Faridabad and Ghaziabad.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Button asChild size="lg" className="gradient-primary shadow-elegant">

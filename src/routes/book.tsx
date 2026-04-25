@@ -16,9 +16,15 @@ export const Route = createFileRoute("/book")({
   component: BookPage,
   head: () => ({
     meta: [
-      { title: "Book a Repair — WISHTEK Technology" },
-      { name: "description", content: "Professional IT services at your doorstep. Book a certified technician for your laptop repair." },
+      { title: "Book Doorstep Laptop Repair Pickup in Gurgaon & Delhi NCR | WISHTEK" },
+      { name: "description", content: "Book free doorstep laptop pickup across Gurgaon, Delhi, Noida, Faridabad & Ghaziabad. Certified technicians, 90-day warranty, transparent pricing." },
+      { property: "og:title", content: "Book Doorstep Laptop Repair | WISHTEK Technology" },
+      { property: "og:description", content: "Free pickup & delivery across Delhi NCR. Same-day service available." },
+      { property: "og:url", content: "https://wishtek.tech/book" },
+      { name: "twitter:title", content: "Book Doorstep Laptop Repair | WISHTEK" },
+      { name: "twitter:description", content: "Free pickup & delivery across Delhi NCR." },
     ],
+    links: [{ rel: "canonical", href: "https://wishtek.tech/book" }],
   }),
 });
 
