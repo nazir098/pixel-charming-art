@@ -36,8 +36,8 @@ export function Header() {
                 key={l.to}
                 to={l.to}
                 className={cn(
-                  "relative px-4 py-2 text-sm font-semibold transition-colors hover:text-primary",
-                  active ? "text-primary" : "text-muted-foreground"
+                  "relative px-4 py-2 text-sm font-bold transition-colors hover:text-primary",
+                  active ? "text-primary" : "text-foreground"
                 )}
               >
                 {l.label}
