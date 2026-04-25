@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Store, Zap, PiggyBank, BadgeCheck, Headphones, CheckCircle2, ArrowRight } from "lucide-react";
+import { Store, Zap, PiggyBank, BadgeCheck, Headphones, CheckCircle2, ArrowRight, Truck, ShieldCheck, Wrench, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About WISHTEK Technology — Doorstep Laptop Repair Experts in Delhi NCR" },
-      { name: "description", content: "10+ years of experience, 50,000+ laptop repairs completed. Nehru Place-rooted technicians serving Gurgaon, Delhi, Noida, Faridabad & Ghaziabad." },
+      { name: "description", content: "Doorstep laptop repair and enterprise IT solutions across Delhi NCR. Genuine parts, certified technicians, 90-day warranty — rooted in Nehru Place." },
       { property: "og:title", content: "About WISHTEK Technology — Trusted IT Partner in Delhi NCR" },
       { property: "og:description", content: "Born in Nehru Place. Serving Delhi NCR with doorstep laptop repair and enterprise IT solutions." },
       { property: "og:url", content: "https://wishtek.tech/about" },
@@ -30,11 +30,11 @@ export const Route = createFileRoute("/about")({
   }),
 });
 
-const stats = [
-  { v: "10+", l: "Years Experience" },
-  { v: "50k+", l: "Repairs Completed" },
-  { v: "10+", l: "Team Experts" },
-  { v: "100%", l: "Local Trust" },
+const valueProps = [
+  { icon: Truck, t: "Doorstep Service", d: "Free pickup & delivery across Delhi NCR" },
+  { icon: ShieldCheck, t: "90-Day Warranty", d: "On every part and repair we deliver" },
+  { icon: BadgeCheck, t: "Genuine Parts", d: "Authentic spares, never refurbished" },
+  { icon: Wrench, t: "Certified Technicians", d: "Nehru Place-trained component experts" },
 ];
 
 const features = [
@@ -89,12 +89,15 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-accent/40 py-12">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 md:grid-cols-4 md:px-8">
-          {stats.map((s) => (
-            <div key={s.l} className="text-center">
-              <p className="font-display text-3xl font-extrabold text-primary md:text-5xl">{s.v}</p>
-              <p className="mt-1 text-xs font-bold uppercase tracking-wider text-muted-foreground">{s.l}</p>
+      <section className="bg-accent/40 py-14">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-5 px-4 md:grid-cols-4 md:px-8">
+          {valueProps.map((p) => (
+            <div key={p.t} className="flex flex-col items-center rounded-2xl border border-border/60 bg-background p-6 text-center transition-colors hover:border-primary/40">
+              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <p.icon className="h-6 w-6" />
+              </div>
+              <p className="font-display text-base font-extrabold text-foreground md:text-lg">{p.t}</p>
+              <p className="mt-1 text-xs text-muted-foreground md:text-sm">{p.d}</p>
             </div>
           ))}
         </div>
