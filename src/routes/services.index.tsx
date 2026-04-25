@@ -74,14 +74,11 @@ function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
-                whileHover={{ y: -8 }}
                 className="h-full"
               >
-                <Card
-                  className="group relative flex h-full flex-col border-border p-7 transition-all duration-300 hover:border-primary hover:shadow-[0_0_0_2px_var(--primary),0_0_40px_8px_color-mix(in_oklab,var(--primary)_55%,transparent),0_0_80px_20px_color-mix(in_oklab,var(--primary)_30%,transparent)]"
-                >
-                  {/* Top accent bar */}
-                  <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-primary transition-transform duration-500 group-hover:scale-x-100 rounded-t-xl" />
+                <Card className="group relative flex h-full flex-col border-border p-7 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
+                  {/* Subtle left accent bar that grows on hover */}
+                  <span className="absolute left-0 top-6 h-0 w-1 rounded-r-full bg-primary transition-all duration-300 group-hover:h-12" />
 
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
                     <s.icon className="h-6 w-6" />
@@ -94,9 +91,9 @@ function ServicesPage() {
                         Get Details
                       </Link>
                     </Button>
-                    <Button asChild size="sm" className="gradient-primary transition-transform hover:scale-105">
+                    <Button asChild size="sm" className="gradient-primary">
                       <Link to="/inquire" search={{ service: s.id }}>
-                        Inquire <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                        Inquire <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                       </Link>
                     </Button>
                   </div>
