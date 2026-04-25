@@ -78,16 +78,10 @@ function ServicesPage() {
                 className="h-full"
               >
                 <Card
-                  className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_24px_60px_-12px_var(--tw-shadow-color)]"
-                  style={{ ['--tw-shadow-color' as string]: 'color-mix(in oklab, var(--primary) 45%, transparent)' }}
+                  className="group relative flex h-full flex-col border-border p-7 transition-all duration-300 hover:border-primary hover:ring-4 hover:ring-primary/30 hover:shadow-[0_0_0_1px_var(--primary),0_18px_45px_-10px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
                 >
-                  {/* Soft primary glow wash on hover */}
-                  <div
-                    className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    style={{ background: "radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 70%)" }}
-                  />
                   {/* Top accent bar */}
-                  <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-primary transition-transform duration-500 group-hover:scale-x-100" />
+                  <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-primary transition-transform duration-500 group-hover:scale-x-100 rounded-t-xl" />
 
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
                     <s.icon className="h-6 w-6" />
