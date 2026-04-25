@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Phone, MessageCircle, MapPin, Send } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Send, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -146,6 +146,15 @@ function InquirePage() {
                     <a href="https://wa.me/918851930450" className="mt-1 inline-block w-full rounded-md px-4 py-2 text-center text-sm font-bold text-primary-foreground" style={{ background: "oklch(0.65 0.18 145)" }}>
                       Chat with Us
                     </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Mail className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Email Us</p>
+                    <a href="mailto:info@wishtek.tech" className="font-bold text-foreground hover:text-primary">info@wishtek.tech</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
