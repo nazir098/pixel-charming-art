@@ -11,7 +11,7 @@ import gRepair from "@/assets/repair-closeup.jpg";
 import gScreen from "@/assets/gallery-screen.jpg";
 import gBattery from "@/assets/gallery-battery.jpg";
 import gKeyboard from "@/assets/gallery-keyboard.jpg";
-import gNetwork from "@/assets/gallery-network.jpg";
+import gNetwork from "@/assets/nehru-it-infra.jpg";
 import gSsd from "@/assets/gallery-ssd.jpg";
 
 export const Route = createFileRoute("/about")({
