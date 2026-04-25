@@ -69,18 +69,30 @@ function ServicesPage() {
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {portfolio.map((s, i) => (
               <motion.div
-                key={i}
+                key={s.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
               >
-                <Card className="group h-full border-border p-7 transition-base hover:border-primary hover-lift">
+                <Card className="group flex h-full flex-col border-border p-7 transition-base hover:border-primary hover-lift">
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-base group-hover:gradient-primary group-hover:text-primary-foreground">
                     <s.icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-display text-lg font-bold">{s.title}</h3>
-                  <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
+                  <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.desc}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    <Button asChild size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/5">
+                      <Link to="/services/$serviceId" params={{ serviceId: s.id }}>
+                        Get Details
+                      </Link>
+                    </Button>
+                    <Button asChild size="sm" className="gradient-primary">
+                      <Link to="/inquire" search={{ service: s.id }}>
+                        Inquire <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                      </Link>
+                    </Button>
+                  </div>
                 </Card>
               </motion.div>
             ))}
