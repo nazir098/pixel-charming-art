@@ -1,13 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import {
-  Monitor, Server, CloudUpload, Layers, Network, Shield, ClipboardCheck,
-  Smartphone, Video, Zap, Code2, Award, ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import enterpriseHero from "@/assets/enterprise-hero.jpg";
+import { getPortfolioServicesSync } from "@/lib/api/services";
 
 export const Route = createFileRoute("/services")({
   component: ServicesPage,
@@ -28,20 +26,7 @@ export const Route = createFileRoute("/services")({
   }),
 });
 
-const portfolio = [
-  { icon: Monitor, title: "Compute Solutions", desc: "Scalable processing power including workstations and VDI environments tailored for heavy enterprise workloads." },
-  { icon: Server, title: "Server", desc: "High-availability server deployments, configuration, and management for mission-critical applications." },
-  { icon: CloudUpload, title: "Storage & Backup", desc: "Robust data protection strategies and high-speed storage architectures to ensure business continuity." },
-  { icon: Layers, title: "Hyper Converged Infrastructure", desc: "Streamlined IT operations by combining compute, storage, and networking into a single agile system." },
-  { icon: Network, title: "Networking Solutions", desc: "Enterprise-grade wired and wireless networking designed for seamless connectivity and low latency." },
-  { icon: Shield, title: "Security Solutions", desc: "Comprehensive cybersecurity frameworks, firewalls, and endpoint protection to safeguard your digital assets." },
-  { icon: ClipboardCheck, title: "Asset Management", desc: "Lifecycle tracking and optimization of your IT hardware and software assets to maximize ROI." },
-  { icon: Smartphone, title: "Mobility Solutions", desc: "Secure mobile device management and remote access solutions for a modern, hybrid workforce." },
-  { icon: Video, title: "Audio Video Solutions", desc: "Integrated AV systems for conference rooms, digital signage, and immersive collaborative spaces." },
-  { icon: Zap, title: "Low Voltage Solutions", desc: "Structured cabling, surveillance, and access control systems for physical building infrastructure." },
-  { icon: Code2, title: "Software Solutions", desc: "License management and custom software implementations to drive operational productivity." },
-  { icon: Award, title: "AMC / Annual Maintenance", desc: "Proactive maintenance contracts ensuring your hardware operates at peak efficiency year-round." },
-];
+const portfolio = getPortfolioServicesSync();
 
 function ServicesPage() {
   return (
