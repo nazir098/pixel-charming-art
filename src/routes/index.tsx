@@ -67,30 +67,30 @@ function HomePage() {
         <HeroCarousel
           slides={[
             {
-              eyebrow: "Professional IT Support",
-              titleStart: "Doorstep Laptop Repair —",
-              titleAccent: "Fast, Reliable & Hassle-Free",
+              eyebrow: "Doorstep Laptop Repair · Delhi NCR",
+              titleStart: "Doorstep Laptop Repair in Gurgaon —",
+              titleAccent: "Free Pickup, Expert Fix, Fast Delivery",
               description:
-                "Get your devices fixed by certified experts without leaving your home. Transparent pricing and premium parts guaranteed.",
-              primaryCta: { label: "Book Service Now", to: "/book" },
-              secondaryCta: { label: "View Pricing", to: "/pricing" },
+                "We pick up your laptop from home or office across Gurgaon, Delhi, Noida, Faridabad & Ghaziabad — repair it with genuine parts and deliver it back. 90-day warranty, transparent pricing, certified technicians.",
+              primaryCta: { label: "Book Doorstep Pickup", to: "/book" },
+              secondaryCta: { label: "View Repair Pricing", to: "/pricing" },
               image: heroTech,
-              imageAlt: "Wishtek certified technician",
+              imageAlt: "WISHTEK certified technician performing doorstep laptop repair in Gurgaon",
               cardTitle: "90-Day Warranty",
-              cardCaption: "All repairs come with our official service guarantee for peace of mind.",
+              cardCaption: "Every repair backed by our official service guarantee.",
             },
             {
-              eyebrow: "Corporate Managed Services",
-              titleStart: "Comprehensive IT",
-              titleAccent: "Solutions for Your Business",
+              eyebrow: "Enterprise IT Solutions Provider",
+              titleStart: "IT Infrastructure & AMC Services",
+              titleAccent: "for Businesses across Delhi NCR",
               description:
-                "From network infrastructure to cloud backup, we provide scalable IT services tailored for growth.",
-              primaryCta: { label: "Explore All Services", to: "/services" },
-              secondaryCta: { label: "Contact Sales", to: "/inquire" },
+                "Networking, server, storage & backup, security, AMC and managed IT support tailored for SMBs and enterprises in Gurgaon, Noida and Delhi NCR.",
+              primaryCta: { label: "Explore IT Services", to: "/services" },
+              secondaryCta: { label: "Get a Free Quote", to: "/inquire" },
               image: serverRack,
-              imageAlt: "Enterprise server room",
-              cardTitle: "Secure & Scalable",
-              cardCaption: "End-to-end management for modern enterprise requirements.",
+              imageAlt: "Enterprise server rack — WISHTEK IT infrastructure solutions",
+              cardTitle: "Trusted by 150+ Businesses",
+              cardCaption: "End-to-end managed services across Delhi NCR.",
             },
           ]}
         />
