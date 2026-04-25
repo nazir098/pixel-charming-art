@@ -4,8 +4,8 @@ export function BrandStrip({ label = "Trusted by leading enterprises across Indi
   return (
     <section className="border-y border-border bg-background py-10">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <p className="text-center text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground">
-          {label}
+        <p className="text-center font-display text-base font-extrabold uppercase tracking-[0.25em] text-foreground md:text-lg">
+          Trusted by leading enterprises across <span className="text-primary">India</span>
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 md:gap-x-16">
           {brands.map((b) => (
