@@ -64,6 +64,17 @@ export interface PortfolioServiceDTO {
   icon: string;
   title: string;
   desc: string;
+  /** Optional long-form detail. Backend can return this from GET /api/services/portfolio/{id}. */
+  detail?: ServiceDetailDTO;
+}
+
+export interface ServiceDetailDTO {
+  tagline: string;
+  overview: string;
+  features: string[];
+  benefits: string[];
+  useCases: string[];
+  faq: { q: string; a: string }[];
 }
 
 /* ───────────── UI-ready models (icon resolved to component) ───────────── */
