@@ -31,9 +31,9 @@ export function Footer() {
           <div>
             <h4 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">Legal</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-primary">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-primary">Refund Policy</a></li>
+              <li><Link to="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-primary">Terms of Service</Link></li>
+              <li><Link to="/refund" className="hover:text-primary">Refund Policy</Link></li>
             </ul>
           </div>
 
