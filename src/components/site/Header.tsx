@@ -1,6 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Wrench } from "lucide-react";
+import { Menu, X, MonitorCog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
         <Link to="/" className="flex items-center gap-2">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary shadow-glow">
-            <Wrench className="h-5 w-5 text-primary-foreground" />
+            <MonitorCog className="h-5 w-5 text-primary-foreground" />
           </div>
           <span className="font-display text-lg font-extrabold tracking-tight text-primary">
             WISHTEK<span className="text-foreground"> TECHNOLOGY</span>
