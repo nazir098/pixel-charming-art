@@ -78,7 +78,7 @@ function ServicesPage() {
                 className="h-full"
               >
                 <Card
-                  className="group relative flex h-full flex-col border-border p-7 transition-all duration-300 hover:border-primary hover:ring-4 hover:ring-primary/30 hover:shadow-[0_0_0_1px_var(--primary),0_18px_45px_-10px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
+                  className="group relative flex h-full flex-col border-border p-7 transition-all duration-300 hover:border-primary hover:shadow-[0_0_0_2px_var(--primary),0_0_40px_8px_color-mix(in_oklab,var(--primary)_55%,transparent),0_0_80px_20px_color-mix(in_oklab,var(--primary)_30%,transparent)]"
                 >
                   {/* Top accent bar */}
                   <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-primary transition-transform duration-500 group-hover:scale-x-100 rounded-t-xl" />
