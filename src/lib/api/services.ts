@@ -20,7 +20,7 @@
 import {
   Monitor, Battery, Keyboard, HardDrive,
   Server, CloudUpload, Layers, Network, Shield, ClipboardCheck,
-  Smartphone, Video, Zap, Code2, Award,
+  Smartphone, Video, Zap, Code2, Award, Cpu, Droplets,
   type LucideIcon,
 } from "lucide-react";
 
@@ -41,6 +41,8 @@ const ICON_MAP: Record<string, LucideIcon> = {
   zap: Zap,
   "code-2": Code2,
   award: Award,
+  cpu: Cpu,
+  droplets: Droplets,
 };
 
 export function resolveIcon(key: string): LucideIcon {
