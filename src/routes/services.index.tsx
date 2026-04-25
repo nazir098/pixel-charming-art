@@ -74,22 +74,29 @@ function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
+                whileHover={{ y: -8 }}
+                className="h-full"
               >
-                <Card className="group flex h-full flex-col border-border p-7 transition-base hover:border-primary hover-lift">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-base group-hover:gradient-primary group-hover:text-primary-foreground">
+                <Card className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 hover:border-primary hover:shadow-elegant">
+                  {/* Gradient glow on hover */}
+                  <div className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(circle at top right, hsl(var(--primary) / 0.12), transparent 60%)" }} />
+                  {/* Top accent bar */}
+                  <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-primary transition-transform duration-500 group-hover:scale-x-100" />
+
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:gradient-primary group-hover:text-primary-foreground group-hover:shadow-lg">
                     <s.icon className="h-6 w-6" />
                   </div>
-                  <h3 className="font-display text-lg font-bold">{s.title}</h3>
+                  <h3 className="font-display text-lg font-bold transition-colors duration-300 group-hover:text-primary">{s.title}</h3>
                   <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.desc}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    <Button asChild size="sm" variant="outline" className="border-primary/30 text-primary hover:bg-primary/5">
+                    <Button asChild size="sm" variant="outline" className="border-primary/30 text-primary transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground">
                       <Link to="/services/$serviceId" params={{ serviceId: s.id }}>
                         Get Details
                       </Link>
                     </Button>
-                    <Button asChild size="sm" className="gradient-primary">
+                    <Button asChild size="sm" className="gradient-primary transition-transform hover:scale-105">
                       <Link to="/inquire" search={{ service: s.id }}>
-                        Inquire <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                        Inquire <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </Button>
                   </div>
