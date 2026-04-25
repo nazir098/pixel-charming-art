@@ -1,56 +1,33 @@
 # Deploying to Vercel
 
-This project is built with **TanStack Start** and currently configured for **Cloudflare Workers** (via `@lovable.dev/vite-tanstack-config`, which bundles the Cloudflare adapter). To deploy on Vercel, you must switch the server adapter — Vercel cannot run a Cloudflare Worker bundle.
+This project (TanStack Start) is wired up for Vercel via a thin Node serverless function in `api/index.js` that adapts the framework's web-standard `fetch` handler to Vercel's request/response.
 
-## Option A — Recommended: Deploy as-is to Cloudflare
+## How it works
 
-The project is already Cloudflare-ready (`wrangler.jsonc` is present). Just run:
+- `bun run build` produces:
+  - `dist/client/` — static assets (served directly by Vercel's CDN)
+  - `dist/server/server.js` — the SSR handler (web-standard `{ fetch }` export)
+- `api/index.js` — Vercel serverless function that imports `dist/server/server.js` and forwards every non-asset request to it.
+- `vercel.json` — sets the build command, output directory for static assets, and rewrites all non-asset paths to `/api/index`.
+
+## Deploy steps
+
+1. Push the project to GitHub.
+2. In Vercel: **Add New → Project → Import** the repo.
+3. Framework preset: **Other** (do not pick a preset; `vercel.json` controls everything).
+4. Add any `VITE_*` env vars under **Settings → Environment Variables**.
+5. Click **Deploy**.
+
+That's it. The serverless function will SSR every page; static assets are served from the CDN.
+
+## Local sanity check
 
 ```bash
-bunx wrangler deploy
+bun run build
+bunx vercel dev   # optional, requires Vercel CLI login
 ```
 
-No code changes needed.
+## Notes
 
-## Option B — Switch to Vercel
-
-You'll need to eject from `@lovable.dev/vite-tanstack-config` and configure the Vercel adapter manually. High-level steps:
-
-1. **Replace the Vite config** — remove `@lovable.dev/vite-tanstack-config` and write a standard `vite.config.ts` using `@tanstack/react-start/plugin/vite` with `target: "vercel"`:
-
-   ```ts
-   import { defineConfig } from "vite";
-   import { tanstackStart } from "@tanstack/react-start/plugin/vite";
-   import viteReact from "@vitejs/plugin-react";
-   import tailwindcss from "@tailwindcss/vite";
-   import tsConfigPaths from "vite-tsconfig-paths";
-
-   export default defineConfig({
-     plugins: [
-       tsConfigPaths(),
-       tailwindcss(),
-       tanstackStart({ target: "vercel" }),
-       viteReact(),
-     ],
-   });
-   ```
-
-2. **Remove Cloudflare bits**:
-   - Delete `wrangler.jsonc`
-   - `bun remove @cloudflare/vite-plugin @lovable.dev/vite-tanstack-config`
-
-3. **Build output** — TanStack Start's Vercel target emits to `.vercel/output` (already set in `vercel.json`).
-
-4. **Push to GitHub**, then in Vercel:
-   - Import the repo
-   - Framework preset: **Other**
-   - Build command: `bun run build` (already in `vercel.json`)
-   - Output directory: `.vercel/output` (already in `vercel.json`)
-
-5. **Environment variables** — add any `VITE_*` vars in Vercel project settings.
-
-> ⚠️ Doing the eject in Lovable will break the Lovable preview, since the preview relies on `@lovable.dev/vite-tanstack-config`. Recommend doing the switch in a separate branch / after exporting to GitHub.
-
-## What I added
-
-- `vercel.json` — build/output config so Vercel knows how to build the project once you complete Option B.
+- The Cloudflare adapter (`@cloudflare/vite-plugin`, `@lovable.dev/vite-tanstack-config`) and `wrangler.jsonc` have been removed.
+- ⚠️ The Lovable in-editor preview depends on `@lovable.dev/vite-tanstack-config` and may no longer work in the Lovable editor. Local `bun dev` and Vercel deploys still work.
