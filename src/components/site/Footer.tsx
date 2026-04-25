@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-border pt-6 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} WISHTEK Technology. Crafted with care in Gurugram, India.
+          © 2024 WISHTEK Technology. Crafted in Gurugram, India.
         </div>
       </div>
     </footer>
