@@ -150,3 +150,44 @@ export function getHomeServicesSync(): HomeService[] {
 export function getPortfolioServicesSync(): PortfolioService[] {
   return MOCK_PORTFOLIO_SERVICES.map(hydrate);
 }
+
+/* ───────────── Pricing Rates (Standard Repair Rates table) ───────────── */
+
+export interface RepairRateDTO {
+  id: string;
+  icon: string;        // icon key, e.g. "monitor"
+  label: string;       // Service Category
+  price: string;       // Starting From, e.g. "₹1,499"
+}
+
+export interface RepairRate {
+  id: string;
+  icon: LucideIcon;
+  label: string;
+  price: string;
+}
+
+const MOCK_REPAIR_RATES: RepairRateDTO[] = [
+  { id: "screen",   icon: "smartphone", label: "Screen Replacement",         price: "₹1,499" },
+  { id: "battery",  icon: "battery",    label: "Battery Replacement",        price: "₹899"   },
+  { id: "keyboard", icon: "keyboard",   label: "Keyboard Repair",            price: "₹1,200" },
+  { id: "ramssd",   icon: "cpu",        label: "RAM/SSD Upgrade",            price: "₹499"   },
+  { id: "liquid",   icon: "droplets",   label: "Liquid Damage Diagnostics",  price: "₹750"   },
+];
+
+/** Async — wire up Spring Boot at GET {API_BASE}/api/pricing/rates later. */
+export async function fetchRepairRates(): Promise<RepairRate[]> {
+  if (USE_BACKEND) {
+    // TODO (Spring Boot): GET {API_BASE}/api/pricing/rates
+    const res = await fetch(`${API_BASE}/api/pricing/rates`);
+    if (!res.ok) throw new Error(`Failed to load repair rates: ${res.status}`);
+    const data: RepairRateDTO[] = await res.json();
+    return data.map(hydrate);
+  }
+  return MOCK_REPAIR_RATES.map(hydrate);
+}
+
+/** Sync accessor for instant render during the mock phase. */
+export function getRepairRatesSync(): RepairRate[] {
+  return MOCK_REPAIR_RATES.map(hydrate);
+}
