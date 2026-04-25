@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { getPortfolioServicesSync } from "@/lib/api/services";
 
 export const Route = createFileRoute("/inquire")({
   component: InquirePage,
