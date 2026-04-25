@@ -77,16 +77,25 @@ function InquirePage() {
                 </div>
                 <div className="space-y-2">
                   <Label>Service Category</Label>
-                  <Select>
-                    <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
+                  <Select value={serviceValue} onValueChange={setServiceValue}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a service">
+                        {selectedService?.title}
+                      </SelectValue>
+                    </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="laptop">Laptop Repair</SelectItem>
-                      <SelectItem value="amc">AMC / Maintenance</SelectItem>
-                      <SelectItem value="network">Network Setup</SelectItem>
-                      <SelectItem value="security">Security Solutions</SelectItem>
+                      <SelectItem value="laptop-repair">Doorstep Laptop Repair</SelectItem>
+                      {portfolio.map((s) => (
+                        <SelectItem key={s.id} value={s.id}>{s.title}</SelectItem>
+                      ))}
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
+                  {selectedService && (
+                    <p className="text-xs text-muted-foreground">
+                      Inquiring about: <span className="font-semibold text-foreground">{selectedService.title}</span>
+                    </p>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label>Preferred Date</Label>
