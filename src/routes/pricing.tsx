@@ -73,7 +73,7 @@ function PricingPage() {
             </div>
             <div className="divide-y divide-border">
               {rates.map((r) => (
-                <div key={r.label} className="grid grid-cols-12 items-center gap-4 px-6 py-5 transition-colors hover:bg-secondary/30">
+                <div key={r.id} className="grid grid-cols-12 items-center gap-4 px-6 py-5 transition-colors hover:bg-secondary/30">
                   <div className="col-span-7 flex items-center gap-3">
                     <r.icon className="h-5 w-5 text-primary" />
                     <span className="font-semibold">{r.label}</span>
