@@ -9,7 +9,7 @@ export function Footer() {
           <div>
             <Link to="/" className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary">
-                <Wrench className="h-5 w-5 text-primary-foreground" />
+                <MonitorCog className="h-5 w-5 text-primary-foreground" />
               </div>
               <span className="font-display text-base font-extrabold text-primary">WISHTEK</span>
             </Link>
