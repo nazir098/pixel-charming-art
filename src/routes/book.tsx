@@ -16,9 +16,15 @@ export const Route = createFileRoute("/book")({
   component: BookPage,
   head: () => ({
     meta: [
-      { title: "Book a Repair — WISHTEK Technology" },
-      { name: "description", content: "Professional IT services at your doorstep. Book a certified technician for your laptop repair." },
+      { title: "Book Doorstep Laptop Repair Pickup in Gurgaon & Delhi NCR | WISHTEK" },
+      { name: "description", content: "Book free doorstep laptop pickup across Gurgaon, Delhi, Noida, Faridabad & Ghaziabad. Certified technicians, 90-day warranty, transparent pricing." },
+      { property: "og:title", content: "Book Doorstep Laptop Repair | WISHTEK Technology" },
+      { property: "og:description", content: "Free pickup & delivery across Delhi NCR. Same-day service available." },
+      { property: "og:url", content: "https://wishtek.tech/book" },
+      { name: "twitter:title", content: "Book Doorstep Laptop Repair | WISHTEK" },
+      { name: "twitter:description", content: "Free pickup & delivery across Delhi NCR." },
     ],
+    links: [{ rel: "canonical", href: "https://wishtek.tech/book" }],
   }),
 });
 
@@ -39,9 +45,9 @@ function BookPage() {
     <SiteLayout>
       <section className="gradient-hero py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h1 className="font-display text-4xl font-extrabold md:text-6xl">Book Your Repair</h1>
+          <h1 className="font-display text-4xl font-extrabold md:text-6xl">Book Doorstep Laptop Repair in Delhi NCR</h1>
           <p className="mt-4 max-w-xl text-muted-foreground md:text-lg">
-            Professional IT services at your doorstep. Fill in the details below to schedule a certified technician for your laptop repair.
+            Free pickup & delivery across Gurgaon, Delhi, Noida, Faridabad and Ghaziabad. Fill in the details below to schedule a certified WISHTEK technician for your laptop repair.
           </p>
         </div>
       </section>

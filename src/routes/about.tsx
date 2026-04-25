@@ -18,9 +18,15 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About Us — WISHTEK Technology" },
-      { name: "description", content: "India's trusted tech partner. 10+ years of experience, 50k+ repairs completed across Delhi NCR." },
+      { title: "About WISHTEK Technology — Doorstep Laptop Repair Experts in Delhi NCR" },
+      { name: "description", content: "10+ years of experience, 50,000+ laptop repairs completed. Nehru Place-rooted technicians serving Gurgaon, Delhi, Noida, Faridabad & Ghaziabad." },
+      { property: "og:title", content: "About WISHTEK Technology — Trusted IT Partner in Delhi NCR" },
+      { property: "og:description", content: "Born in Nehru Place. Serving Delhi NCR with doorstep laptop repair and enterprise IT solutions." },
+      { property: "og:url", content: "https://wishtek.tech/about" },
+      { name: "twitter:title", content: "About WISHTEK Technology" },
+      { name: "twitter:description", content: "Trusted IT partner across Delhi NCR." },
     ],
+    links: [{ rel: "canonical", href: "https://wishtek.tech/about" }],
   }),
 });
 

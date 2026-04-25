@@ -14,9 +14,15 @@ export const Route = createFileRoute("/inquire")({
   component: InquirePage,
   head: () => ({
     meta: [
-      { title: "Inquire — WISHTEK Technology" },
-      { name: "description", content: "Connect with our experts at WISHTEK TECHNOLOGY. Fill out the form for a tailored IT solution." },
+      { title: "Get a Free IT Quote in Gurgaon & Delhi NCR | WISHTEK" },
+      { name: "description", content: "Request a free quote for laptop repair, AMC, networking or IT solutions. Reply within 24 hours. Call 8851930450 or WhatsApp now." },
+      { property: "og:title", content: "Get a Free IT Quote | WISHTEK Technology" },
+      { property: "og:description", content: "Free consultation for laptop repair & enterprise IT services across Delhi NCR." },
+      { property: "og:url", content: "https://wishtek.tech/inquire" },
+      { name: "twitter:title", content: "Get a Free IT Quote | WISHTEK" },
+      { name: "twitter:description", content: "Free consultation for laptop repair & IT services across Delhi NCR." },
     ],
+    links: [{ rel: "canonical", href: "https://wishtek.tech/inquire" }],
   }),
 });
 

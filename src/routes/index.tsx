@@ -10,6 +10,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandStrip } from "@/components/site/BrandStrip";
 import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
+import { FAQ } from "@/components/site/FAQ";
 import heroTech from "@/assets/hero-technician.jpg";
 import serverRack from "@/assets/server-rack.jpg";
 
@@ -25,9 +26,18 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "WISHTEK Technology — Doorstep Laptop Repair & Enterprise IT Solutions" },
-      { name: "description", content: "Fast, reliable, hassle-free laptop repair across Delhi NCR. Certified technicians, transparent pricing, 90-day warranty. Enterprise IT infrastructure for businesses." },
+      { title: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK Technology" },
+      { name: "description", content: "Doorstep laptop repair in Gurgaon, Delhi, Noida, Faridabad & Ghaziabad. Free pickup & delivery, certified technicians, 90-day warranty. Call 8851930450." },
+      { name: "keywords", content: "laptop repair near me, doorstep laptop repair, laptop repair Gurgaon, laptop pickup repair, IT solutions provider, networking solutions, AMC services, IT infrastructure solutions Delhi NCR" },
+      { property: "og:title", content: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK" },
+      { property: "og:description", content: "Free pickup, expert repair, fast delivery. 90-day warranty. Serving Gurgaon, Delhi, Noida, Faridabad, Ghaziabad." },
+      { property: "og:url", content: "https://wishtek.tech/" },
+      { property: "og:image", content: "https://wishtek.tech/og-image.jpg" },
+      { name: "twitter:title", content: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK" },
+      { name: "twitter:description", content: "Free pickup, expert repair, fast delivery. 90-day warranty across Delhi NCR." },
+      { name: "twitter:image", content: "https://wishtek.tech/og-image.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://wishtek.tech/" }],
   }),
 });
 
@@ -57,30 +67,30 @@ function HomePage() {
         <HeroCarousel
           slides={[
             {
-              eyebrow: "Professional IT Support",
-              titleStart: "Doorstep Laptop Repair —",
-              titleAccent: "Fast, Reliable & Hassle-Free",
+              eyebrow: "Doorstep Laptop Repair · Delhi NCR",
+              titleStart: "Doorstep Laptop Repair in Gurgaon —",
+              titleAccent: "Free Pickup, Expert Fix, Fast Delivery",
               description:
-                "Get your devices fixed by certified experts without leaving your home. Transparent pricing and premium parts guaranteed.",
-              primaryCta: { label: "Book Service Now", to: "/book" },
-              secondaryCta: { label: "View Pricing", to: "/pricing" },
+                "We pick up your laptop from home or office across Gurgaon, Delhi, Noida, Faridabad & Ghaziabad — repair it with genuine parts and deliver it back. 90-day warranty, transparent pricing, certified technicians.",
+              primaryCta: { label: "Book Doorstep Pickup", to: "/book" },
+              secondaryCta: { label: "View Repair Pricing", to: "/pricing" },
               image: heroTech,
-              imageAlt: "Wishtek certified technician",
+              imageAlt: "WISHTEK certified technician performing doorstep laptop repair in Gurgaon",
               cardTitle: "90-Day Warranty",
-              cardCaption: "All repairs come with our official service guarantee for peace of mind.",
+              cardCaption: "Every repair backed by our official service guarantee.",
             },
             {
-              eyebrow: "Corporate Managed Services",
-              titleStart: "Comprehensive IT",
-              titleAccent: "Solutions for Your Business",
+              eyebrow: "Enterprise IT Solutions Provider",
+              titleStart: "IT Infrastructure & AMC Services",
+              titleAccent: "for Businesses across Delhi NCR",
               description:
-                "From network infrastructure to cloud backup, we provide scalable IT services tailored for growth.",
-              primaryCta: { label: "Explore All Services", to: "/services" },
-              secondaryCta: { label: "Contact Sales", to: "/inquire" },
+                "Networking, server, storage & backup, security, AMC and managed IT support tailored for SMBs and enterprises in Gurgaon, Noida and Delhi NCR.",
+              primaryCta: { label: "Explore IT Services", to: "/services" },
+              secondaryCta: { label: "Get a Free Quote", to: "/inquire" },
               image: serverRack,
-              imageAlt: "Enterprise server room",
-              cardTitle: "Secure & Scalable",
-              cardCaption: "End-to-end management for modern enterprise requirements.",
+              imageAlt: "Enterprise server rack — WISHTEK IT infrastructure solutions",
+              cardTitle: "Trusted by 150+ Businesses",
+              cardCaption: "End-to-end managed services across Delhi NCR.",
             },
           ]}
         />
@@ -261,7 +271,50 @@ function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* SERVICE AREAS */}
+      <section className="py-20 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mb-10 text-center">
+            <h2 className="font-display text-3xl font-extrabold md:text-5xl">Doorstep Laptop Repair Service Areas</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+              Free pickup & delivery across Delhi NCR. Same-day service available in most localities — book before 12 PM.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+            {[
+              { city: "Gurgaon", areas: "Sector 1-115, DLF, Sohna Road, Golf Course, MG Road, Cyber City" },
+              { city: "Delhi", areas: "South Delhi, Saket, Vasant Kunj, Dwarka, Nehru Place, Connaught Place" },
+              { city: "Noida", areas: "Sector 1-150, Greater Noida, Noida Extension, Expressway" },
+              { city: "Faridabad", areas: "NIT, Sector 1-89, Greater Faridabad, Neharpar" },
+              { city: "Ghaziabad", areas: "Indirapuram, Vaishali, Vasundhara, Raj Nagar, Kaushambi" },
+            ].map((c) => (
+              <Card key={c.city} className="p-5 hover-lift">
+                <h3 className="font-display text-lg font-bold text-primary">Laptop Repair in {c.city}</h3>
+                <p className="mt-2 text-xs text-muted-foreground">{c.areas}</p>
+                <Link to="/book" className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary hover:gap-2 transition-all">
+                  Book pickup <ArrowRight className="h-3 w-3" />
+                </Link>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <FAQ
+        title="Laptop Repair & IT Services — FAQs"
+        subtitle="Everything you need to know about our doorstep laptop repair and enterprise IT solutions."
+        items={[
+          { q: "Do you really offer doorstep laptop repair across Delhi NCR?", a: "Yes. We pick up your laptop from your home or office anywhere in Gurgaon, Delhi, Noida, Faridabad and Ghaziabad — repair it at our authorised facility and deliver it back, usually within 24-48 hours. Pickup and delivery are free." },
+          { q: "How much does a typical laptop repair cost?", a: "Screen replacement starts at ₹1,499, battery from ₹899, keyboard from ₹1,200, and software/OS install from ₹599. Final pricing depends on your laptop model. We share a transparent quote before any work begins — no hidden charges." },
+          { q: "Which laptop brands do you repair?", a: "We service all major brands including Dell, HP, Lenovo, Apple MacBook, Asus, Acer, MSI, Microsoft Surface, Samsung and more — both consumer and business models." },
+          { q: "Do you provide a warranty on repairs?", a: "Yes. Every repair carries a 90-day service warranty covering both parts and workmanship. If the same issue recurs within 90 days, we fix it free." },
+          { q: "What is included in your enterprise AMC services?", a: "Our Annual Maintenance Contracts cover preventive and breakdown maintenance for laptops, desktops, servers, networking equipment and peripherals — including on-site engineer visits, remote support, asset tracking and quarterly health checks." },
+          { q: "How quickly can a technician reach me?", a: "For doorstep pickup in Gurgaon and central Delhi NCR, our agent typically arrives within 60-120 minutes of booking during working hours (10 AM - 8 PM, Mon-Sat)." },
+          { q: "Is my data safe during repair?", a: "Absolutely. We follow strict data privacy protocols, never access personal files unless required for the fix, and offer secure data backup before any storage-related repair." },
+        ]}
+      />
+
       <section className="gradient-deep py-20 text-primary-foreground">
         <div className="mx-auto max-w-4xl px-4 text-center md:px-8">
           <h2 className="font-display text-3xl font-extrabold md:text-5xl">Ready to get your laptop fixed?</h2>

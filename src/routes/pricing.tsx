@@ -9,9 +9,16 @@ export const Route = createFileRoute("/pricing")({
   component: PricingPage,
   head: () => ({
     meta: [
-      { title: "Transparent Pricing — WISHTEK Technology" },
-      { name: "description", content: "Honest, upfront rates for all your IT repair and upgrade needs. 90-day warranty on all repairs. No hidden costs." },
+      { title: "Laptop Repair Price List in Gurgaon & Delhi NCR | WISHTEK" },
+      { name: "description", content: "Transparent laptop repair pricing — screen ₹1,499, battery ₹899, keyboard ₹1,200. 90-day warranty. Free pickup & delivery across Delhi NCR." },
+      { name: "keywords", content: "laptop repair price Gurgaon, laptop screen replacement cost, laptop battery price Delhi" },
+      { property: "og:title", content: "Laptop Repair Price List | WISHTEK Technology" },
+      { property: "og:description", content: "Transparent laptop repair rates with 90-day warranty across Delhi NCR." },
+      { property: "og:url", content: "https://wishtek.tech/pricing" },
+      { name: "twitter:title", content: "Laptop Repair Price List | WISHTEK" },
+      { name: "twitter:description", content: "Transparent rates, no hidden fees, 90-day warranty." },
     ],
+    links: [{ rel: "canonical", href: "https://wishtek.tech/pricing" }],
   }),
 });
 
