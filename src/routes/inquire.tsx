@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { getPortfolioServicesSync } from "@/lib/api/services";
+import { CONTACT, telHref, mailHref, whatsappHref } from "@/lib/contact";
 
 export const Route = createFileRoute("/inquire")({
   component: InquirePage,
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/inquire")({
   head: () => ({
     meta: [
       { title: "Get a Free IT Quote in Gurgaon & Delhi NCR | WISHTEK" },
-      { name: "description", content: "Request a free quote for laptop repair, AMC, networking or IT solutions. Reply within 24 hours. Call 8851930450 or WhatsApp now." },
+      { name: "description", content: `Request a free quote for laptop repair, AMC, networking or IT solutions. Reply within 24 hours. Call ${CONTACT.phone} or WhatsApp now.` },
       { property: "og:title", content: "Get a Free IT Quote | WISHTEK Technology" },
       { property: "og:description", content: "Free consultation for laptop repair & enterprise IT services across Delhi NCR." },
       { property: "og:url", content: "https://wishtek.tech/inquire" },
@@ -134,7 +135,7 @@ function InquirePage() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Call Us</p>
-                    <a href="tel:8851930450" className="font-bold text-foreground hover:text-primary">8851930450</a>
+                    <a href={telHref} className="font-bold text-foreground hover:text-primary">{CONTACT.phone}</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -143,7 +144,7 @@ function InquirePage() {
                   </div>
                   <div className="flex-1">
                     <p className="text-xs text-muted-foreground">WhatsApp</p>
-                    <a href="https://wa.me/918851930450" className="mt-1 inline-block w-full rounded-md px-4 py-2 text-center text-sm font-bold text-primary-foreground" style={{ background: "oklch(0.65 0.18 145)" }}>
+                    <a href={whatsappHref()} className="mt-1 inline-block w-full rounded-md px-4 py-2 text-center text-sm font-bold text-primary-foreground" style={{ background: "oklch(0.65 0.18 145)" }}>
                       Chat with Us
                     </a>
                   </div>
@@ -154,7 +155,7 @@ function InquirePage() {
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">Email Us</p>
-                    <a href="mailto:info@wishtek.tech" className="font-bold text-foreground hover:text-primary">info@wishtek.tech</a>
+                    <a href={mailHref} className="font-bold text-foreground hover:text-primary">{CONTACT.email}</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">

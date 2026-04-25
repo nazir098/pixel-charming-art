@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { CONTACT } from "@/lib/contact";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
@@ -53,12 +54,12 @@ function PrivacyPage() {
 
           <section>
             <h2 className="font-display text-2xl font-bold text-foreground">7. Your Rights</h2>
-            <p>You may request access to, correction of, or deletion of your personal data by contacting us at support@wishtek.tech.</p>
+            <p>You may request access to, correction of, or deletion of your personal data by contacting us at {CONTACT.supportEmail}.</p>
           </section>
 
           <section>
             <h2 className="font-display text-2xl font-bold text-foreground">8. Contact</h2>
-            <p>For any privacy concerns, contact us at support@wishtek.tech or call 8851930450.</p>
+            <p>For any privacy concerns, contact us at {CONTACT.supportEmail} or call {CONTACT.phone}.</p>
           </section>
         </div>
       </article>

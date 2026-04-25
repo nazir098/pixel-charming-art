@@ -13,6 +13,7 @@ import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
 import { FAQ } from "@/components/site/FAQ";
 import heroTech from "@/assets/hero-technician.jpg";
+import { CONTACT, telHref } from "@/lib/contact";
 import serverRack from "@/assets/server-rack.jpg";
 
 import gTech from "@/assets/nehru-technician.jpg";
@@ -322,7 +323,7 @@ function HomePage() {
               <Link to="/book">Book Now</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-2 border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
-              <a href="tel:8851930450"><Phone className="mr-2 h-4 w-4" /> Call 8851930450</a>
+              <a href={telHref}><Phone className="mr-2 h-4 w-4" /> Call {CONTACT.phone}</a>
             </Button>
           </div>
         </div>

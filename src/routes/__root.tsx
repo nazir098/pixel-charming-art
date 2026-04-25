@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { StickyCTA } from "@/components/site/StickyCTA";
+import { CONTACT } from "@/lib/contact";
 
 import appCss from "../styles.css?url";
 
@@ -13,8 +14,8 @@ const localBusinessJsonLd = {
   name: "WISHTEK Technology",
   image: `${SITE_URL}/og-image.jpg`,
   url: SITE_URL,
-  telephone: "+91-8851930450",
-  email: "support@wishtek.tech",
+  telephone: `+91-${CONTACT.phone}`,
+  email: CONTACT.supportEmail,
   priceRange: "₹₹",
   description:
     "Doorstep laptop repair and enterprise IT solutions across Gurgaon, Delhi NCR, Noida, Faridabad and Ghaziabad. Pickup, repair and delivery with 90-day warranty.",

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { CONTACT } from "@/lib/contact";
 
 export const Route = createFileRoute("/refund")({
   head: () => ({
@@ -53,12 +54,12 @@ function RefundPage() {
 
           <section>
             <h2 className="font-display text-2xl font-bold text-foreground">7. How to Request a Refund</h2>
-            <p>Email support@wishtek.tech with your service ID, invoice, and reason for the request. We aim to respond within 2 business days and process approved refunds within 7–10 business days.</p>
+            <p>Email {CONTACT.supportEmail} with your service ID, invoice, and reason for the request. We aim to respond within 2 business days and process approved refunds within 7–10 business days.</p>
           </section>
 
           <section>
             <h2 className="font-display text-2xl font-bold text-foreground">8. Contact</h2>
-            <p>For questions about this policy, email support@wishtek.tech or call 8851930450.</p>
+            <p>For questions about this policy, email {CONTACT.supportEmail} or call {CONTACT.phone}.</p>
           </section>
         </div>
       </article>

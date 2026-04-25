@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { CONTACT } from "@/lib/contact";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -63,7 +64,7 @@ function TermsPage() {
 
           <section>
             <h2 className="font-display text-2xl font-bold text-foreground">9. Contact</h2>
-            <p>Questions about these terms? Email support@wishtek.tech or call 8851930450.</p>
+            <p>Questions about these terms? Email {CONTACT.supportEmail} or call {CONTACT.phone}.</p>
           </section>
         </div>
       </article>
