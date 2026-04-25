@@ -10,6 +10,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandStrip } from "@/components/site/BrandStrip";
 import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
+import { FAQ } from "@/components/site/FAQ";
 import heroTech from "@/assets/hero-technician.jpg";
 import serverRack from "@/assets/server-rack.jpg";
 
@@ -25,9 +26,18 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "WISHTEK Technology — Doorstep Laptop Repair & Enterprise IT Solutions" },
-      { name: "description", content: "Fast, reliable, hassle-free laptop repair across Delhi NCR. Certified technicians, transparent pricing, 90-day warranty. Enterprise IT infrastructure for businesses." },
+      { title: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK Technology" },
+      { name: "description", content: "Doorstep laptop repair in Gurgaon, Delhi, Noida, Faridabad & Ghaziabad. Free pickup & delivery, certified technicians, 90-day warranty. Call 8851930450." },
+      { name: "keywords", content: "laptop repair near me, doorstep laptop repair, laptop repair Gurgaon, laptop pickup repair, IT solutions provider, networking solutions, AMC services, IT infrastructure solutions Delhi NCR" },
+      { property: "og:title", content: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK" },
+      { property: "og:description", content: "Free pickup, expert repair, fast delivery. 90-day warranty. Serving Gurgaon, Delhi, Noida, Faridabad, Ghaziabad." },
+      { property: "og:url", content: "https://wishtek.tech/" },
+      { property: "og:image", content: "https://wishtek.tech/og-image.jpg" },
+      { name: "twitter:title", content: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK" },
+      { name: "twitter:description", content: "Free pickup, expert repair, fast delivery. 90-day warranty across Delhi NCR." },
+      { name: "twitter:image", content: "https://wishtek.tech/og-image.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://wishtek.tech/" }],
   }),
 });
 
