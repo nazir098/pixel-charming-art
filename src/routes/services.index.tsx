@@ -111,12 +111,9 @@ function ServicesPage() {
             <p className="mx-auto mt-4 max-w-xl text-primary-foreground/85">
               Our consultants are ready to design a custom roadmap for your enterprise needs.
             </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <div className="mt-7 flex justify-center">
               <Button asChild size="lg" className="bg-background text-foreground hover:bg-accent">
-                <Link to="/inquire">Inquire Now</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10">
-                <Link to="/book">Schedule Consultation <ArrowRight className="ml-1 h-4 w-4" /></Link>
+                <Link to="/inquire">Schedule Consultation <ArrowRight className="ml-1 h-4 w-4" /></Link>
               </Button>
             </div>
           </div>
