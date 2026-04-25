@@ -77,9 +77,15 @@ function ServicesPage() {
                 whileHover={{ y: -8 }}
                 className="h-full"
               >
-                <Card className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_20px_50px_-15px_hsl(var(--primary)/0.35)]">
-                  {/* Soft primary glow on hover */}
-                  <div className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: "radial-gradient(circle at top right, hsl(var(--primary) / 0.15), transparent 65%)" }} />
+                <Card
+                  className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_24px_60px_-12px_var(--tw-shadow-color)]"
+                  style={{ ['--tw-shadow-color' as string]: 'color-mix(in oklab, var(--primary) 45%, transparent)' }}
+                >
+                  {/* Soft primary glow wash on hover */}
+                  <div
+                    className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    style={{ background: "radial-gradient(120% 80% at 50% 0%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 70%)" }}
+                  />
                   {/* Top accent bar */}
                   <div className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 gradient-primary transition-transform duration-500 group-hover:scale-x-100" />
 
