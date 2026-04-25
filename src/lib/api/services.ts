@@ -291,9 +291,23 @@ export async function fetchPortfolioServices(): Promise<PortfolioService[]> {
     const res = await fetch(`${API_BASE}/api/services/portfolio`);
     if (!res.ok) throw new Error(`Failed to load portfolio services: ${res.status}`);
     const data: PortfolioServiceDTO[] = await res.json();
-    return data.map(hydrate);
+    return data.map(attachDetail).map(hydrate);
   }
-  return MOCK_PORTFOLIO_SERVICES.map(hydrate);
+  return MOCK_PORTFOLIO_SERVICES.map(attachDetail).map(hydrate);
+}
+
+/** Fetch a single portfolio service (with detail content) by id. */
+export async function fetchPortfolioService(id: string): Promise<PortfolioService | null> {
+  if (USE_BACKEND) {
+    // TODO (Spring Boot): GET {API_BASE}/api/services/portfolio/{id}
+    const res = await fetch(`${API_BASE}/api/services/portfolio/${encodeURIComponent(id)}`);
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error(`Failed to load service ${id}: ${res.status}`);
+    const data: PortfolioServiceDTO = await res.json();
+    return hydrate(attachDetail(data));
+  }
+  const dto = MOCK_PORTFOLIO_SERVICES.find((s) => s.id === id);
+  return dto ? hydrate(attachDetail(dto)) : null;
 }
 
 /** Synchronous accessors — used during the mock phase for instant render.
@@ -303,7 +317,12 @@ export function getHomeServicesSync(): HomeService[] {
 }
 
 export function getPortfolioServicesSync(): PortfolioService[] {
-  return MOCK_PORTFOLIO_SERVICES.map(hydrate);
+  return MOCK_PORTFOLIO_SERVICES.map(attachDetail).map(hydrate);
+}
+
+export function getPortfolioServiceSync(id: string): PortfolioService | null {
+  const dto = MOCK_PORTFOLIO_SERVICES.find((s) => s.id === id);
+  return dto ? hydrate(attachDetail(dto)) : null;
 }
 
 /* ───────────── Pricing Rates (Standard Repair Rates table) ───────────── */
