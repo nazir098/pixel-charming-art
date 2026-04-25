@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Smartphone, Battery, Keyboard, Cpu, Droplets, ShieldCheck, Receipt } from "lucide-react";
+import { ShieldCheck, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import repairImg from "@/assets/repair-closeup.jpg";
+import { getRepairRatesSync } from "@/lib/api/services";
 
 export const Route = createFileRoute("/pricing")({
   component: PricingPage,
@@ -22,13 +23,7 @@ export const Route = createFileRoute("/pricing")({
   }),
 });
 
-const rates = [
-  { icon: Smartphone, label: "Screen Replacement", price: "₹1,499" },
-  { icon: Battery, label: "Battery Replacement", price: "₹899" },
-  { icon: Keyboard, label: "Keyboard Repair", price: "₹1,200" },
-  { icon: Cpu, label: "RAM/SSD Upgrade", price: "₹499" },
-  { icon: Droplets, label: "Liquid Damage Diagnostics", price: "₹750" },
-];
+const rates = getRepairRatesSync();
 
 function PricingPage() {
   return (
@@ -78,7 +73,7 @@ function PricingPage() {
             </div>
             <div className="divide-y divide-border">
               {rates.map((r) => (
-                <div key={r.label} className="grid grid-cols-12 items-center gap-4 px-6 py-5 transition-colors hover:bg-secondary/30">
+                <div key={r.id} className="grid grid-cols-12 items-center gap-4 px-6 py-5 transition-colors hover:bg-secondary/30">
                   <div className="col-span-7 flex items-center gap-3">
                     <r.icon className="h-5 w-5 text-primary" />
                     <span className="font-semibold">{r.label}</span>
