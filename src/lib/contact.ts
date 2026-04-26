@@ -1,13 +1,13 @@
 // Central contact configuration. Update values here to change them site-wide.
 export const CONTACT = {
   // Phone number shown to users (used for display + tel: links)
-  phone: "8851930450",
+  phone: "9205869566",
   // International format used for WhatsApp links (no "+" or spaces)
-  phoneIntl: "918851930450",
+  phoneIntl: "919205869566",
   // Primary contact email (used in mailto: links and display)
-  email: "info@wishtek.tech",
+  email: "sales@wishtek.in",
   // Email used for legal/policy pages (support inbox)
-  supportEmail: "support@wishtek.tech",
+  supportEmail: "sales@wishtek.in",
 } as const;
 
 export const telHref = `tel:${CONTACT.phone}`;
