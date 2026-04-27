@@ -90,7 +90,7 @@ function ServiceDetailPage() {
             <div className="mt-7 flex flex-wrap gap-3">
               <Button asChild size="lg" className="gradient-primary shadow-elegant">
                 <Link to="/inquire" search={{ service: service.id }}>
-                  Inquire About {service.title} <ArrowRight className="ml-1 h-4 w-4" />
+                  Contact Us About {service.title} <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary">

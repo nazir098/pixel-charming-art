@@ -80,7 +80,7 @@ function PricingPage() {
                   </div>
                   <div className="col-span-3 font-bold text-foreground">{r.price}</div>
                   <Link to="/inquire" className="col-span-2 text-right text-sm font-bold text-primary hover:underline">
-                    Inquire
+                    Contact Us
                   </Link>
                 </div>
               ))}
@@ -120,7 +120,7 @@ function PricingPage() {
               <Link to="/book">Book Service</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary">
-              <Link to="/inquire">Inquire Now</Link>
+              <Link to="/inquire">Contact Us</Link>
             </Button>
           </div>
         </div>

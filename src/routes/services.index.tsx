@@ -93,7 +93,7 @@ function ServicesPage() {
                     </Button>
                     <Button asChild size="sm" className="gradient-primary">
                       <Link to="/inquire" search={{ service: s.id }}>
-                        Inquire <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                        Contact Us <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                       </Link>
                     </Button>
                   </div>
