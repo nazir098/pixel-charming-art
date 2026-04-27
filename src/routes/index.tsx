@@ -64,17 +64,17 @@ function HomePage() {
         <HeroCarousel
           slides={[
             {
-              eyebrow: "Enterprise IT Solutions · Delhi NCR",
-              titleStart: "End-to-End IT Solutions &",
-              titleAccent: "AMC Services for Businesses in Delhi NCR",
+              eyebrow: "IT Services Company · Sector 67, Gurgaon",
+              titleStart: "Trusted IT Services in Gurgaon —",
+              titleAccent: "Sector 62, 65, 66, 67 & Golf Course Extension",
               description:
-                "Networking, servers, storage & backup, cyber security, AMC and managed IT support — engineered for SMBs and enterprises across Gurgaon, Delhi, Noida, Faridabad & Ghaziabad. Trusted by 150+ businesses.",
+                "Headquartered at M3M Urbana, Sector 67 — WISHTEK delivers networking, servers, AMC, cyber security and managed IT support to businesses across Gurgaon's commercial hubs. On-site engineers within 60 minutes for Sector 62-70 clients.",
               primaryCta: { label: "Explore IT Services", to: "/services" },
               secondaryCta: { label: "Get a Free Quote", to: "/inquire" },
               image: serverRack,
-              imageAlt: "Enterprise server rack — WISHTEK IT infrastructure solutions in Delhi NCR",
-              cardTitle: "Trusted by 150+ Businesses",
-              cardCaption: "End-to-end managed IT & AMC services across Delhi NCR.",
+              imageAlt: "WISHTEK enterprise IT services for businesses in Sector 67 Gurgaon",
+              cardTitle: "Local to Gurgaon",
+              cardCaption: "Office at M3M Urbana, Sector 67 — serving Sector 62, 65, 66, 67, 68, 69, 70.",
             },
             {
               eyebrow: "Also Available · Doorstep Laptop Repair",
@@ -304,7 +304,44 @@ function HomePage() {
         </div>
       </section>
 
-      {/* SERVICE AREAS */}
+      {/* GURGAON SECTORS — HYPERLOCAL */}
+      <section className="bg-secondary/40 py-20 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 md:px-8">
+          <div className="mb-10 text-center">
+            <span className="inline-block rounded-full bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+              Hyperlocal · Gurgaon
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-extrabold md:text-5xl">
+              IT Services Across <span className="text-gradient">Gurgaon Sectors</span>
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
+              Our office at M3M Urbana, Sector 67 means faster on-site response for businesses in nearby commercial sectors. Same-day visits available.
+            </p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { sector: "Sector 62, Gurgaon", note: "IT support, networking & AMC for offices along Golf Course Extension Road." },
+              { sector: "Sector 65, Gurgaon", note: "Managed IT services for SMBs in Emaar Palm Square, Vatika & nearby towers." },
+              { sector: "Sector 66, Gurgaon", note: "Server, storage & cyber security setups for businesses near Vatika INXT." },
+              { sector: "Sector 67, Gurgaon", note: "Our home base — M3M Urbana. Walk-in support, AMC and rapid on-site visits." },
+              { sector: "Sector 68, Gurgaon", note: "Office network design, Wi-Fi and CCTV installations." },
+              { sector: "Sector 69 & 70", note: "Annual Maintenance Contracts for residential complexes & startups." },
+              { sector: "Golf Course Ext. Road", note: "End-to-end IT infrastructure for premium commercial projects." },
+              { sector: "Sohna Road, Gurgaon", note: "Doorstep laptop repair, AMC and managed IT for offices along Sohna Road." },
+            ].map((s) => (
+              <Card key={s.sector} className="p-5 hover-lift">
+                <h3 className="font-display text-base font-bold text-primary">IT Services in {s.sector}</h3>
+                <p className="mt-2 text-xs text-muted-foreground">{s.note}</p>
+                <Link to="/inquire" className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary hover:gap-2 transition-all">
+                  Request a quote <ArrowRight className="h-3 w-3" />
+                </Link>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICE AREAS — WIDER NCR */}
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="mb-10 text-center">
@@ -315,7 +352,7 @@ function HomePage() {
           </div>
           <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
             {[
-              { city: "Gurgaon", areas: "Sector 1-115, DLF, Sohna Road, Golf Course, MG Road, Cyber City" },
+              { city: "Gurgaon", areas: "Sector 62, 65, 66, 67, 68, 69, 70, Golf Course Ext., Sohna Road, DLF, Cyber City" },
               { city: "Delhi", areas: "South Delhi, Saket, Vasant Kunj, Dwarka, Nehru Place, Connaught Place" },
               { city: "Noida", areas: "Sector 1-150, Greater Noida, Noida Extension, Expressway" },
               { city: "Faridabad", areas: "NIT, Sector 1-89, Greater Faridabad, Neharpar" },
@@ -338,7 +375,8 @@ function HomePage() {
         title="Laptop Repair & IT Services — FAQs"
         subtitle="Everything you need to know about our doorstep laptop repair and enterprise IT solutions."
         items={[
-          { q: "Do you really offer doorstep laptop repair across Delhi NCR?", a: "Yes. We pick up your laptop from your home or office anywhere in Gurgaon, Delhi, Noida, Faridabad and Ghaziabad — repair it at our authorised facility and deliver it back, usually within 24-48 hours. Pickup and delivery are free." },
+          { q: "Where is your office located in Gurgaon?", a: "Our office is at Shop no. R1-121, M3M URBANA, Sector 67, Gurugram — easily accessible from Sector 62, 65, 66, 68, 69, 70 and the entire Golf Course Extension Road belt. Walk-ins are welcome during working hours." },
+          { q: "Do you provide IT services in Sector 62, 65 and 66 Gurgaon?", a: "Yes. Sector 62, 65 and 66 are some of our most active service zones. Because our base is in Sector 67, on-site engineers typically reach client offices in these sectors within 30-60 minutes for AMC, networking and emergency support calls." },
           { q: "How much does a typical laptop repair cost?", a: "Screen replacement starts at ₹1,499, battery from ₹899, keyboard from ₹1,200, and software/OS install from ₹599. Final pricing depends on your laptop model. We share a transparent quote before any work begins — no hidden charges." },
           { q: "Which laptop brands do you repair?", a: "We service all major brands including Dell, HP, Lenovo, Apple MacBook, Asus, Acer, MSI, Microsoft Surface, Samsung and more — both consumer and business models." },
           { q: "Do you provide a warranty on repairs?", a: "Yes. Every repair carries a 90-day service warranty covering both parts and workmanship. If the same issue recurs within 90 days, we fix it free." },
