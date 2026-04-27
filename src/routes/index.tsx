@@ -27,15 +27,15 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "IT Services Company in Gurgaon — Sector 62, 65, 66, 67 | AMC & Networking | WISHTEK" },
-      { name: "description", content: "WISHTEK is a leading IT services company in Gurgaon — networking, servers, AMC, cyber security & managed IT support for businesses in Sector 62, 65, 66, 67 and Golf Course Extension. Office at M3M Urbana, Sector 67." },
-      { name: "keywords", content: "IT services Gurgaon, IT company Sector 67 Gurgaon, IT support Sector 65 Gurgaon, IT solutions Sector 66 Gurgaon, AMC services Sector 62 Gurgaon, networking Gurgaon, managed IT Golf Course Extension, IT company M3M Urbana, laptop repair Gurgaon Sector 67" },
-      { property: "og:title", content: "IT Services Company in Gurgaon — Sector 62, 65, 66, 67 | WISHTEK" },
-      { property: "og:description", content: "Networking, servers, AMC, security & managed IT for businesses in Sector 62, 65, 66, 67 and across Gurgaon. Office at M3M Urbana, Sector 67." },
+      { title: "IT Services Company in Gurgaon | AMC, Networking & Managed IT | WISHTEK" },
+      { name: "description", content: "WISHTEK is a trusted IT services company in Gurgaon — networking, servers, AMC, cyber security and managed IT support for startups, SMBs and enterprises across Gurugram and the Golf Course Extension business belt." },
+      { name: "keywords", content: "IT services Gurgaon, IT company Gurgaon, managed IT services Gurugram, AMC services Gurgaon, networking solutions Gurgaon, cyber security Gurgaon, server support Gurgaon, IT support for startups Gurgaon, enterprise IT Gurugram, laptop repair Gurgaon" },
+      { property: "og:title", content: "IT Services Company in Gurgaon | WISHTEK" },
+      { property: "og:description", content: "Networking, servers, AMC, cyber security and managed IT support for businesses across Gurgaon and Delhi NCR." },
       { property: "og:url", content: "https://wishtek.tech/" },
       { property: "og:image", content: "https://wishtek.tech/og-image.jpg" },
-      { name: "twitter:title", content: "IT Services Company in Gurgaon — Sector 62, 65, 66, 67 | WISHTEK" },
-      { name: "twitter:description", content: "Networking, servers, AMC and managed IT for businesses in Sector 62, 65, 66, 67 Gurgaon." },
+      { name: "twitter:title", content: "IT Services Company in Gurgaon | WISHTEK" },
+      { name: "twitter:description", content: "Networking, servers, AMC and managed IT for businesses across Gurgaon and Delhi NCR." },
       { name: "twitter:image", content: "https://wishtek.tech/og-image.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://wishtek.tech/" }],
@@ -64,17 +64,17 @@ function HomePage() {
         <HeroCarousel
           slides={[
             {
-              eyebrow: "IT Services Company · Sector 67, Gurgaon",
-              titleStart: "Trusted IT Services in Gurgaon —",
-              titleAccent: "Sector 62, 65, 66, 67 & Golf Course Extension",
+              eyebrow: "IT Services Company · Gurgaon",
+              titleStart: "Trusted IT Services for",
+              titleAccent: "Businesses Across Gurgaon",
               description:
-                "Headquartered at M3M Urbana, Sector 67 — WISHTEK delivers networking, servers, AMC, cyber security and managed IT support to businesses across Gurgaon's commercial hubs. On-site engineers within 60 minutes for Sector 62-70 clients.",
+                "WISHTEK partners with startups, SMBs and enterprises across Gurgaon — networking, servers, AMC, cyber security and managed IT support delivered by local engineers with rapid on-site response across the city's business hubs.",
               primaryCta: { label: "Explore IT Services", to: "/services" },
               secondaryCta: { label: "Get a Free Quote", to: "/inquire" },
               image: serverRack,
-              imageAlt: "WISHTEK enterprise IT services for businesses in Sector 67 Gurgaon",
+              imageAlt: "WISHTEK enterprise IT services for businesses in Gurgaon",
               cardTitle: "Local to Gurgaon",
-              cardCaption: "Office at M3M Urbana, Sector 67 — serving Sector 62, 65, 66, 67, 68, 69, 70.",
+              cardCaption: "Gurgaon-based team — fast on-site response across the city's commercial belt.",
             },
             {
               eyebrow: "Also Available · Doorstep Laptop Repair",
@@ -304,33 +304,33 @@ function HomePage() {
         </div>
       </section>
 
-      {/* GURGAON SECTORS — HYPERLOCAL */}
+      {/* GURGAON AUDIENCE — WHO WE SERVE */}
       <section className="bg-secondary/40 py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
           <div className="mb-10 text-center">
             <span className="inline-block rounded-full bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
-              Hyperlocal · Gurgaon
+              Built for Gurgaon Businesses
             </span>
             <h2 className="mt-3 font-display text-3xl font-extrabold md:text-5xl">
-              IT Services Across <span className="text-gradient">Gurgaon Sectors</span>
+              IT Services Tailored for <span className="text-gradient">Gurgaon's Business Community</span>
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              Our office at M3M Urbana, Sector 67 means faster on-site response for businesses in nearby commercial sectors. Same-day visits available.
+              From bootstrapped startups to growing enterprises — we design, deploy and maintain IT infrastructure that scales with your business in Gurgaon.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {[
-              { sector: "Sector 62, Gurgaon", note: "IT support, networking & AMC for offices along Golf Course Extension Road." },
-              { sector: "Sector 65, Gurgaon", note: "Managed IT services for SMBs in Emaar Palm Square, Vatika & nearby towers." },
-              { sector: "Sector 66, Gurgaon", note: "Server, storage & cyber security setups for businesses near Vatika INXT." },
-              { sector: "Sector 67, Gurgaon", note: "Our home base — M3M Urbana. Walk-in support, AMC and rapid on-site visits." },
-              { sector: "Sector 68, Gurgaon", note: "Office network design, Wi-Fi and CCTV installations." },
-              { sector: "Sector 69 & 70", note: "Annual Maintenance Contracts for residential complexes & startups." },
-              { sector: "Golf Course Ext. Road", note: "End-to-end IT infrastructure for premium commercial projects." },
-              { sector: "Sohna Road, Gurgaon", note: "Doorstep laptop repair, AMC and managed IT for offices along Sohna Road." },
+              { sector: "Startups & Founders", note: "Office setup, Wi-Fi, email and security — get IT-ready from day one without an in-house team." },
+              { sector: "SMBs & Growing Teams", note: "AMC, managed IT and on-call engineers so your team stays productive and your tech stays healthy." },
+              { sector: "Enterprises & Corporates", note: "Networking, servers, storage, backup and cyber security delivered to enterprise SLAs." },
+              { sector: "Coworking & Shared Offices", note: "Reliable connectivity, structured cabling and CCTV for multi-tenant workspaces." },
+              { sector: "Retail & Hospitality", note: "POS, billing systems, Wi-Fi and surveillance for stores, cafés and restaurants." },
+              { sector: "Clinics & Professional Services", note: "Secure workstations, data backup and compliance-ready IT for chambers and clinics." },
+              { sector: "Schools & Training Centres", note: "Computer labs, projectors, network infrastructure and ongoing maintenance." },
+              { sector: "Real Estate & Construction", note: "Site office IT setup, mobile connectivity and asset tracking across multiple locations." },
             ].map((s) => (
               <Card key={s.sector} className="p-5 hover-lift">
-                <h3 className="font-display text-base font-bold text-primary">IT Services in {s.sector}</h3>
+                <h3 className="font-display text-base font-bold text-primary">{s.sector}</h3>
                 <p className="mt-2 text-xs text-muted-foreground">{s.note}</p>
                 <Link to="/inquire" className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary hover:gap-2 transition-all">
                   Request a quote <ArrowRight className="h-3 w-3" />
@@ -352,7 +352,7 @@ function HomePage() {
           </div>
           <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
             {[
-              { city: "Gurgaon", areas: "Sector 62, 65, 66, 67, 68, 69, 70, Golf Course Ext., Sohna Road, DLF, Cyber City" },
+              { city: "Gurgaon", areas: "Cyber City, DLF, MG Road, Golf Course Road, Golf Course Extension, Sohna Road, New Gurgaon, Old Gurgaon" },
               { city: "Delhi", areas: "South Delhi, Saket, Vasant Kunj, Dwarka, Nehru Place, Connaught Place" },
               { city: "Noida", areas: "Sector 1-150, Greater Noida, Noida Extension, Expressway" },
               { city: "Faridabad", areas: "NIT, Sector 1-89, Greater Faridabad, Neharpar" },
@@ -375,8 +375,8 @@ function HomePage() {
         title="Laptop Repair & IT Services — FAQs"
         subtitle="Everything you need to know about our doorstep laptop repair and enterprise IT solutions."
         items={[
-          { q: "Where is your office located in Gurgaon?", a: "Our office is at Shop no. R1-121, M3M URBANA, Sector 67, Gurugram — easily accessible from Sector 62, 65, 66, 68, 69, 70 and the entire Golf Course Extension Road belt. Walk-ins are welcome during working hours." },
-          { q: "Do you provide IT services in Sector 62, 65 and 66 Gurgaon?", a: "Yes. Sector 62, 65 and 66 are some of our most active service zones. Because our base is in Sector 67, on-site engineers typically reach client offices in these sectors within 30-60 minutes for AMC, networking and emergency support calls." },
+          { q: "Where is your office located in Gurgaon?", a: "Our office is at Shop no. R1-121, M3M URBANA, Gurugram — centrally located along the Golf Course Extension Road belt with easy access to most of Gurgaon's commercial business districts. Walk-ins are welcome during working hours." },
+          { q: "Do you provide IT services across Gurgaon?", a: "Yes. We serve businesses across all of Gurgaon — including Cyber City, DLF, MG Road, Golf Course Road, Golf Course Extension, Sohna Road, New Gurgaon and Old Gurgaon. Our local engineers typically reach client offices within 30–60 minutes for AMC, networking and emergency support calls." },
           { q: "How much does a typical laptop repair cost?", a: "Screen replacement starts at ₹1,499, battery from ₹899, keyboard from ₹1,200, and software/OS install from ₹599. Final pricing depends on your laptop model. We share a transparent quote before any work begins — no hidden charges." },
           { q: "Which laptop brands do you repair?", a: "We service all major brands including Dell, HP, Lenovo, Apple MacBook, Asus, Acer, MSI, Microsoft Surface, Samsung and more — both consumer and business models." },
           { q: "Do you provide a warranty on repairs?", a: "Yes. Every repair carries a 90-day service warranty covering both parts and workmanship. If the same issue recurs within 90 days, we fix it free." },
