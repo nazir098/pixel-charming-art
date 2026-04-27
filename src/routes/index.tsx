@@ -125,23 +125,24 @@ function HomePage() {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="h-full"
               >
-                <Card className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
-                  <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
-                    <s.icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold transition-colors duration-300 group-hover:text-primary">{s.title}</h3>
-                  <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.desc}</p>
-                  <div className="mt-5">
-                    <Link
-                      to="/services/$serviceId"
-                      params={{ serviceId: s.id }}
-                      className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:gap-2 transition-all"
-                    >
+                <Link
+                  to="/services/$serviceId"
+                  params={{ serviceId: s.id }}
+                  aria-label={`View details for ${s.title}`}
+                  className="group block h-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
+                >
+                  <Card className="relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-elegant">
+                    <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
+                      <s.icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="font-display text-lg font-bold transition-colors duration-300 group-hover:text-primary">{s.title}</h3>
+                    <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.desc}</p>
+                    <div className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-primary transition-all group-hover:gap-2">
                       Learn more <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  </div>
-                </Card>
+                    </div>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -180,14 +181,20 @@ function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
               >
-                <Card className="group h-full overflow-hidden border-border p-6 transition-base hover:border-primary hover-lift">
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:gradient-primary group-hover:text-primary-foreground">
-                    <s.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold">{s.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
-                  <p className="mt-4 text-sm font-bold text-primary">Starts at {s.price}</p>
-                </Card>
+                <Link
+                  to="/book"
+                  aria-label={`Book ${s.title}`}
+                  className="group block h-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg"
+                >
+                  <Card className="h-full overflow-hidden border-border p-6 transition-base group-hover:border-primary group-hover:-translate-y-1 group-hover:shadow-elegant">
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:gradient-primary group-hover:text-primary-foreground">
+                      <s.icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-display text-lg font-bold transition-colors group-hover:text-primary">{s.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+                    <p className="mt-4 text-sm font-bold text-primary">Starts at {s.price}</p>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
