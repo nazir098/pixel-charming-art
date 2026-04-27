@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  Calendar, Wrench, Truck,
   Shield, Clock, BadgeCheck, ArrowRight, CheckCircle2, Star, Phone,
 } from "lucide-react";
-import { getHomeServicesSync } from "@/lib/api/services";
+import { getHomeServicesSync, getPortfolioServicesSync } from "@/lib/api/services";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
@@ -44,6 +43,7 @@ export const Route = createFileRoute("/")({
 });
 
 const services = getHomeServicesSync();
+const itServicesShowcase = getPortfolioServicesSync().slice(0, 6);
 
 const galleryItems: GalleryItem[] = [
   { src: gTech, alt: "Technician at workbench", title: "Chip-level Repair", category: "Workshop", span: "lg" },
@@ -95,35 +95,64 @@ function HomePage() {
 
       <BrandStrip />
 
-      {/* HOW IT WORKS */}
+      {/* IT SERVICES SHOWCASE */}
       <section className="bg-secondary/50 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <div className="mb-14 text-center">
-            <h2 className="font-display text-3xl font-extrabold md:text-5xl">How It Works</h2>
-            <div className="mx-auto mt-3 h-1 w-16 rounded-full gradient-primary" />
+          <div className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <span className="inline-block rounded-full bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary">
+                Our IT Services
+              </span>
+              <h2 className="mt-3 font-display text-3xl font-extrabold md:text-5xl">
+                Enterprise IT, <span className="text-gradient">end-to-end</span>
+              </h2>
+              <p className="mt-3 max-w-xl text-muted-foreground">
+                From networks and servers to security and AMC — explore the core IT solutions powering 150+ businesses across Delhi NCR.
+              </p>
+            </div>
+            <Link to="/services" className="flex items-center gap-1 text-sm font-bold text-primary hover:gap-2 transition-all">
+              Explore all IT services <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
-          <div className="relative grid gap-8 md:grid-cols-3">
-            {[
-              { icon: Calendar, step: 1, title: "Book", desc: "Schedule your repair online or call us. Pick a time that suits your schedule." },
-              { icon: Wrench, step: 2, title: "Repair", desc: "Our expert technician arrives at your doorstep and fixes the issue on-site." },
-              { icon: Truck, step: 3, title: "Deliver", desc: "Final testing is done, and your device is handed back as good as new." },
-            ].map((s, i) => (
+
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {itServicesShowcase.map((s, i) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
+                key={s.id}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="relative rounded-2xl border border-border bg-card p-8 text-center shadow-soft hover-lift"
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="h-full"
               >
-                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl gradient-primary shadow-glow">
-                  <s.icon className="h-7 w-7 text-primary-foreground" />
-                </div>
-                <p className="text-sm font-bold text-primary">STEP {s.step}</p>
-                <h3 className="mt-1 font-display text-xl font-bold">{s.title}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">{s.desc}</p>
+                <Card className="group relative flex h-full flex-col overflow-hidden border-border p-7 transition-all duration-300 ease-out hover:-translate-y-1 hover:border-primary/40 hover:shadow-elegant">
+                  <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
+                    <s.icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="font-display text-lg font-bold transition-colors duration-300 group-hover:text-primary">{s.title}</h3>
+                  <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.desc}</p>
+                  <div className="mt-5">
+                    <Link
+                      to="/services/$serviceId"
+                      params={{ serviceId: s.id }}
+                      className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:gap-2 transition-all"
+                    >
+                      Learn more <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </Card>
               </motion.div>
             ))}
+          </div>
+
+          <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button asChild size="lg" className="gradient-primary shadow-elegant">
+              <Link to="/services">Explore All IT Services <ArrowRight className="ml-1 h-4 w-4" /></Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+              <Link to="/inquire">Get a Free Consultation</Link>
+            </Button>
           </div>
         </div>
       </section>
