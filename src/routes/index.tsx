@@ -253,7 +253,7 @@ function HomePage() {
               ))}
             </ul>
             <Button asChild size="lg" className="mt-8 bg-background text-foreground hover:bg-accent">
-              <Link to="/services">Inquire for Business</Link>
+              <Link to="/services">Contact Us for Business</Link>
             </Button>
           </div>
         </div>

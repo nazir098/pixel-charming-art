@@ -74,7 +74,7 @@ function AboutPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg" className="gradient-primary shadow-elegant">
-                <Link to="/inquire">Inquire Now</Link>
+                <Link to="/inquire">Contact Us</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-2 border-primary text-primary">
                 <Link to="/services">Our Services</Link>
