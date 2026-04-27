@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  Calendar, Wrench, Truck,
   Shield, Clock, BadgeCheck, ArrowRight, CheckCircle2, Star, Phone,
 } from "lucide-react";
 import { getHomeServicesSync, getPortfolioServicesSync } from "@/lib/api/services";
