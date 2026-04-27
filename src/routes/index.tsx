@@ -28,15 +28,15 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK Technology" },
-      { name: "description", content: "Doorstep laptop repair in Gurgaon, Delhi, Noida, Faridabad & Ghaziabad. Free pickup & delivery, certified technicians, 90-day warranty. Call 8851930450." },
-      { name: "keywords", content: "laptop repair near me, doorstep laptop repair, laptop repair Gurgaon, laptop pickup repair, IT solutions provider, networking solutions, AMC services, IT infrastructure solutions Delhi NCR" },
-      { property: "og:title", content: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK" },
-      { property: "og:description", content: "Free pickup, expert repair, fast delivery. 90-day warranty. Serving Gurgaon, Delhi, Noida, Faridabad, Ghaziabad." },
+      { title: "Enterprise IT Solutions & AMC Services in Gurgaon, Delhi NCR | WISHTEK" },
+      { name: "description", content: "WISHTEK delivers enterprise IT solutions across Delhi NCR — networking, servers, storage, security, AMC and managed IT support. Trusted by 150+ businesses. Also offering doorstep laptop repair." },
+      { name: "keywords", content: "IT solutions provider Gurgaon, networking solutions Delhi NCR, AMC services, IT infrastructure solutions, managed IT support Noida, enterprise IT company, doorstep laptop repair Gurgaon" },
+      { property: "og:title", content: "Enterprise IT Solutions & AMC Services in Gurgaon, Delhi NCR | WISHTEK" },
+      { property: "og:description", content: "Networking, servers, storage, security, AMC and managed IT for SMBs and enterprises across Delhi NCR. Trusted by 150+ businesses." },
       { property: "og:url", content: "https://wishtek.tech/" },
       { property: "og:image", content: "https://wishtek.tech/og-image.jpg" },
-      { name: "twitter:title", content: "Doorstep Laptop Repair in Gurgaon & Delhi NCR | WISHTEK" },
-      { name: "twitter:description", content: "Free pickup, expert repair, fast delivery. 90-day warranty across Delhi NCR." },
+      { name: "twitter:title", content: "Enterprise IT Solutions & AMC Services in Gurgaon, Delhi NCR | WISHTEK" },
+      { name: "twitter:description", content: "Networking, servers, AMC and managed IT support for businesses across Delhi NCR." },
       { name: "twitter:image", content: "https://wishtek.tech/og-image.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://wishtek.tech/" }],
@@ -64,30 +64,30 @@ function HomePage() {
         <HeroCarousel
           slides={[
             {
-              eyebrow: "Doorstep Laptop Repair · Delhi NCR",
-              titleStart: "Doorstep Laptop Repair in Gurgaon —",
+              eyebrow: "Enterprise IT Solutions · Delhi NCR",
+              titleStart: "End-to-End IT Solutions &",
+              titleAccent: "AMC Services for Businesses in Delhi NCR",
+              description:
+                "Networking, servers, storage & backup, cyber security, AMC and managed IT support — engineered for SMBs and enterprises across Gurgaon, Delhi, Noida, Faridabad & Ghaziabad. Trusted by 150+ businesses.",
+              primaryCta: { label: "Explore IT Services", to: "/services" },
+              secondaryCta: { label: "Get a Free Quote", to: "/inquire" },
+              image: serverRack,
+              imageAlt: "Enterprise server rack — WISHTEK IT infrastructure solutions in Delhi NCR",
+              cardTitle: "Trusted by 150+ Businesses",
+              cardCaption: "End-to-end managed IT & AMC services across Delhi NCR.",
+            },
+            {
+              eyebrow: "Also Available · Doorstep Laptop Repair",
+              titleStart: "Doorstep Laptop Repair —",
               titleAccent: "Free Pickup, Expert Fix, Fast Delivery",
               description:
-                "We pick up your laptop from home or office across Gurgaon, Delhi, Noida, Faridabad & Ghaziabad — repair it with genuine parts and deliver it back. 90-day warranty, transparent pricing, certified technicians.",
+                "Alongside our enterprise IT services, we also offer doorstep laptop repair across Delhi NCR — genuine parts, certified technicians, transparent pricing and a 90-day warranty.",
               primaryCta: { label: "Book Doorstep Pickup", to: "/book" },
               secondaryCta: { label: "View Repair Pricing", to: "/pricing" },
               image: heroTech,
               imageAlt: "WISHTEK certified technician performing doorstep laptop repair in Gurgaon",
               cardTitle: "90-Day Warranty",
               cardCaption: "Every repair backed by our official service guarantee.",
-            },
-            {
-              eyebrow: "Enterprise IT Solutions Provider",
-              titleStart: "IT Infrastructure & AMC Services",
-              titleAccent: "for Businesses across Delhi NCR",
-              description:
-                "Networking, server, storage & backup, security, AMC and managed IT support tailored for SMBs and enterprises in Gurgaon, Noida and Delhi NCR.",
-              primaryCta: { label: "Explore IT Services", to: "/services" },
-              secondaryCta: { label: "Get a Free Quote", to: "/inquire" },
-              image: serverRack,
-              imageAlt: "Enterprise server rack — WISHTEK IT infrastructure solutions",
-              cardTitle: "Trusted by 150+ Businesses",
-              cardCaption: "End-to-end managed services across Delhi NCR.",
             },
           ]}
         />
