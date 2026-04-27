@@ -43,7 +43,7 @@ function InquirePage() {
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
-      toast.success("Inquiry sent! Our team will reach out within 24 hours.");
+      toast.success("Message sent! Our team will contact you within 24 hours.");
       (e.target as HTMLFormElement).reset();
     }, 800);
   };
@@ -52,7 +52,7 @@ function InquirePage() {
     <SiteLayout>
       <section className="gradient-hero py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 md:px-8">
-          <h1 className="font-display text-4xl font-extrabold md:text-6xl">Service Inquiry</h1>
+          <h1 className="font-display text-4xl font-extrabold md:text-6xl">Contact Us</h1>
           <p className="mt-4 max-w-xl text-muted-foreground md:text-lg">
             Connect with our experts at WISHTEK TECHNOLOGY. Fill out the form below for a tailored IT solution.
           </p>
@@ -94,7 +94,7 @@ function InquirePage() {
                   </Select>
                   {selectedService && (
                     <p className="text-xs text-muted-foreground">
-                      Inquiring about: <span className="font-semibold text-foreground">{selectedService.title}</span>
+                      Contacting us about: <span className="font-semibold text-foreground">{selectedService.title}</span>
                     </p>
                   )}
                 </div>
@@ -120,7 +120,7 @@ function InquirePage() {
               </div>
               <Button type="submit" size="lg" disabled={submitting} className="w-full gradient-primary shadow-elegant">
                 <Send className="mr-2 h-4 w-4" />
-                {submitting ? "Sending..." : "Submit Inquiry"}
+                {submitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Card>
