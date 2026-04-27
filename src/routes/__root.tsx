@@ -18,7 +18,7 @@ const localBusinessJsonLd = {
   email: CONTACT.supportEmail,
   priceRange: "₹₹",
   description:
-    "IT services company in Gurgaon — networking, servers, AMC, cyber security and managed IT support for businesses in Sector 62, 65, 66, 67, Golf Course Extension and across Gurugram. Doorstep laptop repair also available across Delhi NCR.",
+    "IT services company in Gurgaon — networking, servers, AMC, cyber security and managed IT support for startups, SMBs and enterprises across Gurugram. Doorstep laptop repair also available across Delhi NCR.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Shop no. R1-121, M3M URBANA, Sector 67",
@@ -96,7 +96,7 @@ export const Route = createRootRoute({
       { property: "og:locale", content: "en_IN" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "geo.region", content: "IN-HR" },
-      { name: "geo.placename", content: "Gurugram, Sector 67" },
+      { name: "geo.placename", content: "Gurugram" },
       { name: "geo.position", content: "28.4089;77.0926" },
       { name: "ICBM", content: "28.4089, 77.0926" },
     ],
