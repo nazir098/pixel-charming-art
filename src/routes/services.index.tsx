@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { CurrentProjects } from "@/components/site/CurrentProjects";
 import enterpriseHero from "@/assets/enterprise-hero.jpg";
 import { getPortfolioServicesSync } from "@/lib/api/services";
 

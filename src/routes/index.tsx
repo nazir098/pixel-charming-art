@@ -10,6 +10,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandStrip } from "@/components/site/BrandStrip";
 import { ImageGallery, GalleryItem } from "@/components/site/ImageGallery";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
+import { CurrentProjects } from "@/components/site/CurrentProjects";
 import { FAQ } from "@/components/site/FAQ";
 import heroTech from "@/assets/hero-technician.jpg";
 import { CONTACT, telHref } from "@/lib/contact";
@@ -157,6 +158,9 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* CURRENT PROJECTS */}
+      <CurrentProjects />
 
       {/* SERVICES */}
       <section className="py-20 md:py-28">
