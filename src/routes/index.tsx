@@ -15,6 +15,7 @@ import { FAQ } from "@/components/site/FAQ";
 import heroTech from "@/assets/hero-technician.jpg";
 import { CONTACT, telHref } from "@/lib/contact";
 import serverRack from "@/assets/server-rack.jpg";
+import itServicesHero from "@/assets/it-services-hero.jpg";
 
 import gTech from "@/assets/nehru-technician.jpg";
 import gLaptops from "@/assets/nehru-laptops.jpg";
@@ -72,10 +73,10 @@ function HomePage() {
                 "WISHTEK partners with startups, SMBs and enterprises across Gurgaon — networking, servers, AMC, cyber security and managed IT support delivered by local engineers with rapid on-site response across the city's business hubs.",
               primaryCta: { label: "Explore IT Services", to: "/services" },
               secondaryCta: { label: "Get a Free Quote", to: "/inquire" },
-              image: serverRack,
-              imageAlt: "WISHTEK enterprise IT services for businesses in Gurgaon",
-              cardTitle: "Local to Gurgaon",
-              cardCaption: "Gurgaon-based team — fast on-site response across the city's commercial belt.",
+              image: itServicesHero,
+              imageAlt: "WISHTEK certified IT engineer configuring enterprise network and servers for a Gurgaon business",
+              cardTitle: "Certified IT Engineers",
+              cardCaption: "Networking, servers, security & AMC — delivered on-site by our in-house team.",
             },
             {
               eyebrow: "Also Available · Doorstep Laptop Repair",
