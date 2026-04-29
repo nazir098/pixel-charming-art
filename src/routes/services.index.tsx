@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { CurrentProjects } from "@/components/site/CurrentProjects";
 import enterpriseHero from "@/assets/enterprise-hero.jpg";
 import { getPortfolioServicesSync } from "@/lib/api/services";
 
@@ -101,6 +102,8 @@ function ServicesPage() {
           </div>
         </div>
       </section>
+
+      <CurrentProjects />
 
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-5xl px-4 md:px-8">
