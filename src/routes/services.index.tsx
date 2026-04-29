@@ -103,6 +103,8 @@ function ServicesPage() {
         </div>
       </section>
 
+      <CurrentProjects />
+
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-5xl px-4 md:px-8">
           <div className="overflow-hidden rounded-3xl gradient-primary p-10 text-center text-primary-foreground shadow-elegant md:p-14">
