@@ -1,31 +1,34 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ShieldCheck, Receipt } from "lucide-react";
+import { Check, ShieldCheck, Receipt } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import repairImg from "@/assets/repair-closeup.jpg";
-import { getRepairRatesSync } from "@/lib/api/services";
+import { fetchPricingPlans } from "@/lib/api/services";
 
 export const Route = createFileRoute("/pricing")({
+  loader: async () => ({
+    plans: await fetchPricingPlans(),
+  }),
   component: PricingPage,
   head: () => ({
     meta: [
-      { title: "Laptop Repair Price List in Gurgaon & Delhi NCR | WISHTEK" },
-      { name: "description", content: "Transparent laptop repair pricing — screen ₹1,499, battery ₹899, keyboard ₹1,200. 90-day warranty. Free pickup & delivery across Delhi NCR." },
-      { name: "keywords", content: "laptop repair price Gurgaon, laptop screen replacement cost, laptop battery price Delhi" },
-      { property: "og:title", content: "Laptop Repair Price List | WISHTEK Technology" },
-      { property: "og:description", content: "Transparent laptop repair rates with 90-day warranty across Delhi NCR." },
+      { title: "IT Service Pricing & Plans in Gurgaon | WISHTEK" },
+      { name: "description", content: "Explore backend-driven WISHTEK pricing plans for website development, cloud solutions and managed IT services across Gurgaon and Delhi NCR." },
+      { name: "keywords", content: "IT services pricing Gurgaon, managed IT pricing Delhi NCR, website development package Gurgaon" },
+      { property: "og:title", content: "IT Service Pricing & Plans | WISHTEK Technology" },
+      { property: "og:description", content: "Transparent service plans for managed IT, cloud solutions and digital delivery." },
       { property: "og:url", content: "https://wishtek.tech/pricing" },
-      { name: "twitter:title", content: "Laptop Repair Price List | WISHTEK" },
-      { name: "twitter:description", content: "Transparent rates, no hidden fees, 90-day warranty." },
+      { name: "twitter:title", content: "IT Service Pricing & Plans | WISHTEK" },
+      { name: "twitter:description", content: "Compare WISHTEK service plans driven directly from the backend." },
     ],
     links: [{ rel: "canonical", href: "https://wishtek.tech/pricing" }],
   }),
 });
 
-const rates = getRepairRatesSync();
-
 function PricingPage() {
+  const { plans } = Route.useLoaderData();
+
   return (
     <SiteLayout>
       <section className="gradient-hero py-16 md:py-24">
@@ -35,7 +38,7 @@ function PricingPage() {
             <span className="text-gradient">No Hidden Costs.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-muted-foreground md:text-lg">
-            Honest, upfront rates for all your IT repair and upgrade needs. Quality service backed by local trust and world-class standards.
+            Backend-driven pricing for managed IT, cloud, digital delivery, and support plans. Clear scope, clear deliverables, and no hidden surprises.
           </p>
         </div>
       </section>
@@ -63,30 +66,56 @@ function PricingPage() {
 
           <Card className="md:col-span-2 overflow-hidden p-0">
             <div className="flex items-center justify-between border-b border-border p-6">
-              <h3 className="font-display text-xl font-bold">Standard Repair Rates</h3>
+              <h3 className="font-display text-xl font-bold">Service Plans & Pricing</h3>
               <Receipt className="h-5 w-5 text-primary" />
             </div>
-            <div className="grid grid-cols-12 gap-4 bg-secondary/50 px-6 py-3 text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              <div className="col-span-7">Service Category</div>
-              <div className="col-span-3">Starting From</div>
-              <div className="col-span-2 text-right">Action</div>
-            </div>
             <div className="divide-y divide-border">
-              {rates.map((r) => (
-                <div key={r.id} className="grid grid-cols-12 items-center gap-4 px-6 py-5 transition-colors hover:bg-secondary/30">
-                  <div className="col-span-7 flex items-center gap-3">
-                    <r.icon className="h-5 w-5 text-primary" />
-                    <span className="font-semibold">{r.label}</span>
+              {plans.map((plan) => (
+                <div key={plan.id} className="px-6 py-6 transition-colors hover:bg-secondary/30">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                    <div className="max-w-2xl">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                        {plan.serviceTitle}
+                      </p>
+                      <div className="mt-2 flex flex-wrap items-center gap-3">
+                        <h4 className="font-display text-2xl font-extrabold">{plan.name}</h4>
+                        {plan.featured && (
+                          <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
+                            Recommended
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-3 text-sm text-muted-foreground">{plan.summary}</p>
+                      {plan.features.length > 0 && (
+                        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+                          {plan.features.filter((feature) => feature.included).map((feature) => (
+                            <span key={feature.label} className="inline-flex items-center gap-2 text-sm font-medium">
+                              <Check className="h-4 w-4 text-primary" />
+                              {feature.label}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div className="md:text-right">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                        {plan.billingLabel}
+                      </p>
+                      <p className="mt-2 text-3xl font-extrabold text-foreground">{plan.priceLabel}</p>
+                      <Link
+                        to="/inquire"
+                        search={{ service: plan.serviceSlug }}
+                        className="mt-4 inline-block text-sm font-bold text-primary hover:underline"
+                      >
+                        Contact Us
+                      </Link>
+                    </div>
                   </div>
-                  <div className="col-span-3 font-bold text-foreground">{r.price}</div>
-                  <Link to="/inquire" className="col-span-2 text-right text-sm font-bold text-primary hover:underline">
-                    Contact Us
-                  </Link>
                 </div>
               ))}
             </div>
             <p className="bg-secondary/40 p-5 text-xs italic text-muted-foreground">
-              * Prices may vary based on model complexity and parts availability.
+              * Final scope and pricing can vary depending on project requirements, diagnostics, and deployment complexity.
             </p>
           </Card>
         </div>

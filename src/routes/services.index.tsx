@@ -6,9 +6,12 @@ import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { CurrentProjects } from "@/components/site/CurrentProjects";
 import enterpriseHero from "@/assets/enterprise-hero.jpg";
-import { getPortfolioServicesSync } from "@/lib/api/services";
+import { fetchPortfolioServices } from "@/lib/api/services";
 
 export const Route = createFileRoute("/services/")({
+  loader: async () => ({
+    portfolio: await fetchPortfolioServices(),
+  }),
   component: ServicesPage,
   head: () => ({
     meta: [
@@ -27,9 +30,9 @@ export const Route = createFileRoute("/services/")({
   }),
 });
 
-const portfolio = getPortfolioServicesSync();
-
 function ServicesPage() {
+  const { portfolio } = Route.useLoaderData();
+
   return (
     <SiteLayout>
       <section className="gradient-hero py-16 md:py-24">

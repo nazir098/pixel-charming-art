@@ -21,6 +21,7 @@ import {
   Monitor, Battery, Keyboard, HardDrive,
   Server, CloudUpload, Layers, Network, Shield, ClipboardCheck,
   Smartphone, Video, Zap, Code2, Award, Cpu, Droplets,
+  Cloud, Database, Lock, Merge, Globe,
   type LucideIcon,
 } from "lucide-react";
 
@@ -43,6 +44,11 @@ const ICON_MAP: Record<string, LucideIcon> = {
   award: Award,
   cpu: Cpu,
   droplets: Droplets,
+  cloud: Cloud,
+  database: Database,
+  lock: Lock,
+  merge: Merge,
+  globe: Globe,
 };
 
 export function resolveIcon(key: string): LucideIcon {
@@ -77,6 +83,40 @@ export interface ServiceDetailDTO {
   faq: { q: string; a: string }[];
 }
 
+export interface BackendServiceDTO {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  shortDescription: string;
+  longDescription: string;
+  icon: string;
+  featured: boolean;
+  sortOrder: number;
+}
+
+export interface BackendPricingFeatureDTO {
+  label: string;
+  included: boolean;
+}
+
+export interface BackendPricingPlanDTO {
+  id: string;
+  serviceSlug: string;
+  name: string;
+  billingLabel: string;
+  priceLabel: string;
+  summary: string;
+  featured: boolean;
+  sortOrder: number;
+  features: BackendPricingFeatureDTO[];
+}
+
+export interface BackendServiceDetailResponseDTO {
+  service: BackendServiceDTO;
+  pricingPlans: BackendPricingPlanDTO[];
+}
+
 /* ───────────── UI-ready models (icon resolved to component) ───────────── */
 
 export interface HomeService {
@@ -93,6 +133,23 @@ export interface PortfolioService {
   title: string;
   desc: string;
   detail?: ServiceDetailDTO;
+}
+
+export interface PricingFeature {
+  label: string;
+  included: boolean;
+}
+
+export interface PricingPlan {
+  id: string;
+  serviceSlug: string;
+  serviceTitle: string;
+  name: string;
+  billingLabel: string;
+  priceLabel: string;
+  summary: string;
+  featured: boolean;
+  features: PricingFeature[];
 }
 
 /* ───────────── Mock data (replace with backend later) ───────────── */
@@ -264,7 +321,7 @@ function attachDetail(dto: PortfolioServiceDTO): PortfolioServiceDTO {
 
 /* ───────────── Public API (UI calls these) ───────────── */
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "";
+const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "https://wishtek-backend.onrender.com";
 const USE_BACKEND = Boolean(API_BASE);
 
 function hydrate<T extends { icon: string }>(dto: T): Omit<T, "icon"> & { icon: LucideIcon } {
@@ -272,14 +329,59 @@ function hydrate<T extends { icon: string }>(dto: T): Omit<T, "icon"> & { icon: 
   return { ...rest, icon: resolveIcon(icon) } as Omit<T, "icon"> & { icon: LucideIcon };
 }
 
+function normalizeApiBase(url: string): string {
+  return url.replace(/\/+$/, "");
+}
+
+function getApiBase(): string {
+  return normalizeApiBase(API_BASE);
+}
+
+function mapBackendService(dto: BackendServiceDTO): PortfolioServiceDTO {
+  return {
+    id: dto.slug,
+    icon: dto.icon,
+    title: dto.name,
+    desc: dto.shortDescription,
+    detail: {
+      tagline: dto.category,
+      overview: dto.longDescription,
+      features: [],
+      benefits: [],
+      useCases: [],
+      faq: [],
+    },
+  };
+}
+
+function mapBackendPricingPlan(
+  dto: BackendPricingPlanDTO,
+  serviceTitleBySlug: Map<string, string>,
+): PricingPlan {
+  return {
+    id: dto.id,
+    serviceSlug: dto.serviceSlug,
+    serviceTitle: serviceTitleBySlug.get(dto.serviceSlug) ?? dto.serviceSlug,
+    name: dto.name,
+    billingLabel: dto.billingLabel,
+    priceLabel: dto.priceLabel,
+    summary: dto.summary,
+    featured: dto.featured,
+    features: dto.features ?? [],
+  };
+}
+
 /** Fetch services for the home page (4 featured repair services). */
 export async function fetchHomeServices(): Promise<HomeService[]> {
   if (USE_BACKEND) {
-    // TODO (Spring Boot): GET {API_BASE}/api/services/home
-    const res = await fetch(`${API_BASE}/api/services/home`);
-    if (!res.ok) throw new Error(`Failed to load home services: ${res.status}`);
-    const data: HomeServiceDTO[] = await res.json();
-    return data.map(hydrate);
+    const services = await fetchPortfolioServices();
+    return services.slice(0, 4).map((service) => ({
+      id: service.id,
+      icon: service.icon,
+      title: service.title,
+      desc: service.desc,
+      price: "Request quote",
+    }));
   }
   return MOCK_HOME_SERVICES.map(hydrate);
 }
@@ -287,10 +389,10 @@ export async function fetchHomeServices(): Promise<HomeService[]> {
 /** Fetch the full enterprise IT services portfolio. */
 export async function fetchPortfolioServices(): Promise<PortfolioService[]> {
   if (USE_BACKEND) {
-    // TODO (Spring Boot): GET {API_BASE}/api/services/portfolio
-    const res = await fetch(`${API_BASE}/api/services/portfolio`);
+    const res = await fetch(`${getApiBase()}/api/services`);
     if (!res.ok) throw new Error(`Failed to load portfolio services: ${res.status}`);
-    const data: PortfolioServiceDTO[] = await res.json();
+    const raw: BackendServiceDTO[] = await res.json();
+    const data = raw.map(mapBackendService);
     return data.map(attachDetail).map(hydrate);
   }
   return MOCK_PORTFOLIO_SERVICES.map(attachDetail).map(hydrate);
@@ -299,15 +401,93 @@ export async function fetchPortfolioServices(): Promise<PortfolioService[]> {
 /** Fetch a single portfolio service (with detail content) by id. */
 export async function fetchPortfolioService(id: string): Promise<PortfolioService | null> {
   if (USE_BACKEND) {
-    // TODO (Spring Boot): GET {API_BASE}/api/services/portfolio/{id}
-    const res = await fetch(`${API_BASE}/api/services/portfolio/${encodeURIComponent(id)}`);
+    const res = await fetch(`${getApiBase()}/api/content/services/${encodeURIComponent(id)}`);
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`Failed to load service ${id}: ${res.status}`);
-    const data: PortfolioServiceDTO = await res.json();
-    return hydrate(attachDetail(data));
+    const data: BackendServiceDetailResponseDTO = await res.json();
+    return hydrate(
+      attachDetail({
+        ...mapBackendService(data.service),
+        detail: {
+          tagline: data.service.category,
+          overview: data.service.longDescription,
+          features: data.pricingPlans.flatMap((plan) =>
+            (plan.features ?? []).filter((feature) => feature.included).map((feature) => feature.label),
+          ),
+          benefits: data.pricingPlans.map((plan) => plan.summary),
+          useCases: data.pricingPlans.map((plan) => plan.name),
+          faq: [],
+        },
+      }),
+    );
   }
   const dto = MOCK_PORTFOLIO_SERVICES.find((s) => s.id === id);
   return dto ? hydrate(attachDetail(dto)) : null;
+}
+
+export async function fetchPricingPlans(): Promise<PricingPlan[]> {
+  if (USE_BACKEND) {
+    const [servicesRes, plansRes] = await Promise.all([
+      fetch(`${getApiBase()}/api/services`),
+      fetch(`${getApiBase()}/api/pricing-plans`),
+    ]);
+    if (!servicesRes.ok) throw new Error(`Failed to load services for pricing: ${servicesRes.status}`);
+    if (!plansRes.ok) throw new Error(`Failed to load pricing plans: ${plansRes.status}`);
+
+    const services: BackendServiceDTO[] = await servicesRes.json();
+    const plans: BackendPricingPlanDTO[] = await plansRes.json();
+    const serviceTitleBySlug = new Map(services.map((service) => [service.slug, service.name]));
+
+    return plans.map((plan) => mapBackendPricingPlan(plan, serviceTitleBySlug));
+  }
+
+  return [
+    {
+      id: "repair-screen",
+      serviceSlug: "doorstep-laptop-repair",
+      serviceTitle: "Doorstep Laptop Repair",
+      name: "Screen Replacement",
+      billingLabel: "starting at",
+      priceLabel: "₹1,499",
+      summary: "OEM-grade screen replacement with installation and testing.",
+      featured: true,
+      features: [
+        { label: "Diagnostic included", included: true },
+        { label: "Pickup & delivery", included: true },
+        { label: "90-day warranty", included: true },
+      ],
+    },
+    {
+      id: "repair-battery",
+      serviceSlug: "doorstep-laptop-repair",
+      serviceTitle: "Doorstep Laptop Repair",
+      name: "Battery Service",
+      billingLabel: "starting at",
+      priceLabel: "₹899",
+      summary: "Battery replacement and charging system health check.",
+      featured: false,
+      features: [
+        { label: "Battery diagnostics", included: true },
+        { label: "OEM-grade parts", included: true },
+        { label: "Warranty support", included: true },
+      ],
+    },
+    {
+      id: "repair-keyboard",
+      serviceSlug: "doorstep-laptop-repair",
+      serviceTitle: "Doorstep Laptop Repair",
+      name: "Keyboard Repair",
+      billingLabel: "starting at",
+      priceLabel: "₹1,200",
+      summary: "Keyboard repair or full replacement for all major laptop brands.",
+      featured: false,
+      features: [
+        { label: "Key matrix testing", included: true },
+        { label: "Replacement installation", included: true },
+        { label: "Cleaning included", included: true },
+      ],
+    },
+  ];
 }
 
 /** Synchronous accessors — used during the mock phase for instant render.

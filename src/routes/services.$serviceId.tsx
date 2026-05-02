@@ -5,15 +5,23 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { getPortfolioServiceSync, getPortfolioServicesSync } from "@/lib/api/services";
+import { fetchPortfolioService, fetchPortfolioServices, fetchPricingPlans } from "@/lib/api/services";
 import { CONTACT, telHref } from "@/lib/contact";
 
 export const Route = createFileRoute("/services/$serviceId")({
   component: ServiceDetailPage,
-  loader: ({ params }) => {
-    const service = getPortfolioServiceSync(params.serviceId);
+  loader: async ({ params }) => {
+    const [service, allServices, allPlans] = await Promise.all([
+      fetchPortfolioService(params.serviceId),
+      fetchPortfolioServices(),
+      fetchPricingPlans(),
+    ]);
     if (!service) throw notFound();
-    return { service };
+    return {
+      service,
+      related: allServices.filter((s) => s.id !== service.id).slice(0, 3),
+      pricingPlans: allPlans.filter((plan) => plan.serviceSlug === service.id),
+    };
   },
   head: ({ loaderData }) => {
     const s = loaderData?.service;
@@ -59,10 +67,9 @@ export const Route = createFileRoute("/services/$serviceId")({
 });
 
 function ServiceDetailPage() {
-  const { service } = Route.useLoaderData();
+  const { service, related, pricingPlans } = Route.useLoaderData();
   const Icon = service.icon;
   const detail = service.detail;
-  const related = getPortfolioServicesSync().filter((s) => s.id !== service.id).slice(0, 3);
 
   return (
     <SiteLayout>
@@ -169,6 +176,45 @@ function ServiceDetailPage() {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </section>
+      )}
+
+      {pricingPlans.length > 0 && (
+        <section className="py-16 md:py-20">
+          <div className="mx-auto max-w-5xl px-4 md:px-8">
+            <h2 className="font-display text-2xl font-extrabold md:text-3xl">Plans for {service.title}</h2>
+            <div className="mt-6 grid gap-5 md:grid-cols-2">
+              {pricingPlans.map((plan) => (
+                <Card key={plan.id} className="p-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-display text-xl font-bold">{plan.name}</h3>
+                      <p className="mt-2 text-sm text-muted-foreground">{plan.summary}</p>
+                    </div>
+                    {plan.featured && (
+                      <span className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
+                        Recommended
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                    {plan.billingLabel}
+                  </p>
+                  <p className="mt-2 font-display text-3xl font-extrabold text-primary">{plan.priceLabel}</p>
+                  {plan.features.length > 0 && (
+                    <ul className="mt-5 space-y-3">
+                      {plan.features.filter((feature) => feature.included).map((feature) => (
+                        <li key={feature.label} className="flex items-start gap-2 text-sm">
+                          <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                          <span>{feature.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
       )}

@@ -9,10 +9,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { getPortfolioServicesSync } from "@/lib/api/services";
+import { fetchPortfolioServices } from "@/lib/api/services";
 import { CONTACT, telHref, mailHref, whatsappHref } from "@/lib/contact";
 
 export const Route = createFileRoute("/inquire")({
+  loader: async () => ({
+    portfolio: await fetchPortfolioServices(),
+  }),
   component: InquirePage,
   validateSearch: (search: Record<string, unknown>): { service?: string } => ({
     service: typeof search.service === "string" ? search.service : undefined,
@@ -33,9 +36,9 @@ export const Route = createFileRoute("/inquire")({
 
 function InquirePage() {
   const { service: preselected } = Route.useSearch();
+  const { portfolio } = Route.useLoaderData();
   const [submitting, setSubmitting] = useState(false);
   const [serviceValue, setServiceValue] = useState<string | undefined>(preselected);
-  const portfolio = getPortfolioServicesSync();
   const selectedService = portfolio.find((s) => s.id === serviceValue);
 
   const onSubmit = (e: React.FormEvent) => {
