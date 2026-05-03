@@ -6,7 +6,8 @@
  * ─────────────────────────────────────────────────────────────────────────────
  *  All UI components import ONLY from this file. To switch to a real backend:
  *
- *  1. Set VITE_API_BASE_URL in your .env (e.g. https://api.wishtek.tech)
+ *  1. Set VITE_ENABLE_BACKEND_CONTENT=true in your .env to enable API-driven content.
+ *  2. Set VITE_API_BASE_URL in your .env (e.g. https://api.wishtek.tech)
  *  2. Replace the body of `fetchHomeServices()` and `fetchPortfolioServices()`
  *     with a real `fetch(...)` call against your Spring Boot endpoints.
  *  3. Make sure your backend returns objects matching `HomeServiceDTO` and
@@ -322,7 +323,7 @@ function attachDetail(dto: PortfolioServiceDTO): PortfolioServiceDTO {
 /* ───────────── Public API (UI calls these) ───────────── */
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "https://wishtek-backend.onrender.com";
-const USE_BACKEND = Boolean(API_BASE);
+const USE_BACKEND = import.meta.env.VITE_ENABLE_BACKEND_CONTENT === "true";
 
 function hydrate<T extends { icon: string }>(dto: T): Omit<T, "icon"> & { icon: LucideIcon } {
   const { icon, ...rest } = dto;
