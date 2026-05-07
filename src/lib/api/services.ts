@@ -123,6 +123,7 @@ export interface BackendServiceDetailResponseDTO {
 export interface HomeService {
   id: string;
   icon: LucideIcon;
+  iconKey: string;
   title: string;
   desc: string;
   price: string;
@@ -131,10 +132,13 @@ export interface HomeService {
 export interface PortfolioService {
   id: string;
   icon: LucideIcon;
+  iconKey: string;
   title: string;
   desc: string;
   detail?: ServiceDetailDTO;
 }
+
+export type SerializablePortfolioService = Omit<PortfolioService, "icon">;
 
 export interface PricingFeature {
   label: string;
@@ -325,9 +329,9 @@ function attachDetail(dto: PortfolioServiceDTO): PortfolioServiceDTO {
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? "https://wishtek-backend.onrender.com";
 const USE_BACKEND = import.meta.env.VITE_ENABLE_BACKEND_CONTENT === "true";
 
-function hydrate<T extends { icon: string }>(dto: T): Omit<T, "icon"> & { icon: LucideIcon } {
+function hydrate<T extends { icon: string }>(dto: T): Omit<T, "icon"> & { icon: LucideIcon; iconKey: string } {
   const { icon, ...rest } = dto;
-  return { ...rest, icon: resolveIcon(icon) } as Omit<T, "icon"> & { icon: LucideIcon };
+  return { ...rest, icon: resolveIcon(icon), iconKey: icon } as Omit<T, "icon"> & { icon: LucideIcon; iconKey: string };
 }
 
 function normalizeApiBase(url: string): string {
@@ -506,6 +510,15 @@ export function getPortfolioServiceSync(id: string): PortfolioService | null {
   return dto ? hydrate(attachDetail(dto)) : null;
 }
 
+export function serializePortfolioService(service: PortfolioService): SerializablePortfolioService {
+  const { icon, ...rest } = service;
+  return rest;
+}
+
+export function serializePortfolioServices(services: PortfolioService[]): SerializablePortfolioService[] {
+  return services.map(serializePortfolioService);
+}
+
 /* ───────────── Pricing Rates (Standard Repair Rates table) ───────────── */
 
 export interface RepairRateDTO {
@@ -518,6 +531,7 @@ export interface RepairRateDTO {
 export interface RepairRate {
   id: string;
   icon: LucideIcon;
+  iconKey: string;
   label: string;
   price: string;
 }

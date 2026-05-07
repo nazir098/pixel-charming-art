@@ -5,7 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { fetchPortfolioService, fetchPortfolioServices, fetchPricingPlans } from "@/lib/api/services";
+import {
+  fetchPortfolioService,
+  fetchPortfolioServices,
+  fetchPricingPlans,
+  resolveIcon,
+  serializePortfolioService,
+  serializePortfolioServices,
+} from "@/lib/api/services";
 import { CONTACT, telHref } from "@/lib/contact";
 
 export const Route = createFileRoute("/services/$serviceId")({
@@ -18,8 +25,8 @@ export const Route = createFileRoute("/services/$serviceId")({
     ]);
     if (!service) throw notFound();
     return {
-      service,
-      related: allServices.filter((s) => s.id !== service.id).slice(0, 3),
+      service: serializePortfolioService(service),
+      related: serializePortfolioServices(allServices.filter((s) => s.id !== service.id).slice(0, 3)),
       pricingPlans: allPlans.filter((plan) => plan.serviceSlug === service.id),
     };
   },
@@ -68,7 +75,7 @@ export const Route = createFileRoute("/services/$serviceId")({
 
 function ServiceDetailPage() {
   const { service, related, pricingPlans } = Route.useLoaderData();
-  const Icon = service.icon;
+  const Icon = resolveIcon(service.iconKey);
   const detail = service.detail;
 
   return (
@@ -227,7 +234,10 @@ function ServiceDetailPage() {
             {related.map((r) => (
               <Card key={r.id} className="p-6 hover-lift">
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <r.icon className="h-5 w-5" />
+                  {(() => {
+                    const RelatedIcon = resolveIcon(r.iconKey);
+                    return <RelatedIcon className="h-5 w-5" />;
+                  })()}
                 </div>
                 <h3 className="font-display text-lg font-bold">{r.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{r.desc}</p>

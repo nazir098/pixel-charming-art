@@ -6,11 +6,11 @@ import { Card } from "@/components/ui/card";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { CurrentProjects } from "@/components/site/CurrentProjects";
 import enterpriseHero from "@/assets/enterprise-hero.jpg";
-import { fetchPortfolioServices } from "@/lib/api/services";
+import { fetchPortfolioServices, resolveIcon, serializePortfolioServices } from "@/lib/api/services";
 
 export const Route = createFileRoute("/services/")({
   loader: async () => ({
-    portfolio: await fetchPortfolioServices(),
+    portfolio: serializePortfolioServices(await fetchPortfolioServices()),
   }),
   component: ServicesPage,
   head: () => ({
@@ -80,6 +80,10 @@ function ServicesPage() {
                 transition={{ duration: 0.4, delay: i * 0.04 }}
                 className="h-full"
               >
+                {(() => {
+                  const Icon = resolveIcon(s.iconKey);
+
+                  return (
                 <Link
                   to="/services/$serviceId"
                   params={{ serviceId: s.id }}
@@ -91,7 +95,7 @@ function ServicesPage() {
                     <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100" />
 
                     <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary/15">
-                      <s.icon className="h-6 w-6" />
+                      <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="font-display text-lg font-bold transition-colors duration-300 group-hover:text-primary">{s.title}</h3>
                     <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.desc}</p>
@@ -100,6 +104,8 @@ function ServicesPage() {
                     </div>
                   </Card>
                 </Link>
+                  );
+                })()}
               </motion.div>
             ))}
           </div>

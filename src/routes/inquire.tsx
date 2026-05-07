@@ -9,12 +9,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { fetchPortfolioServices } from "@/lib/api/services";
+import { fetchPortfolioServices, serializePortfolioServices } from "@/lib/api/services";
 import { CONTACT, telHref, mailHref, whatsappHref } from "@/lib/contact";
 
 export const Route = createFileRoute("/inquire")({
   loader: async () => ({
-    portfolio: await fetchPortfolioServices(),
+    portfolio: serializePortfolioServices(await fetchPortfolioServices()),
   }),
   component: InquirePage,
   validateSearch: (search: Record<string, unknown>): { service?: string } => ({
@@ -34,21 +34,101 @@ export const Route = createFileRoute("/inquire")({
   }),
 });
 
+type InquiryFormState = {
+  fullName: string;
+  email: string;
+  phone: string;
+  preferredDate: string;
+  message: string;
+};
+
+const INITIAL_FORM: InquiryFormState = {
+  fullName: "",
+  email: "",
+  phone: "",
+  preferredDate: "",
+  message: "",
+};
+
+function buildInquiryMessage(params: {
+  form: InquiryFormState;
+  serviceLabel: string;
+  preferredTime: string;
+}) {
+  const { form, serviceLabel, preferredTime } = params;
+
+  return [
+    "New inquiry from Wishtek website",
+    "",
+    `Name: ${form.fullName}`,
+    `Email: ${form.email}`,
+    `Phone: ${form.phone}`,
+    `Service: ${serviceLabel}`,
+    `Preferred Date: ${form.preferredDate || "Not provided"}`,
+    `Preferred Time: ${preferredTime || "Not provided"}`,
+    "",
+    "Message:",
+    form.message || "No additional message provided.",
+  ].join("\n");
+}
+
+function buildInquiryMailto(params: {
+  form: InquiryFormState;
+  serviceLabel: string;
+  preferredTime: string;
+}) {
+  const { form, serviceLabel, preferredTime } = params;
+  const subject = encodeURIComponent(`Website Inquiry: ${serviceLabel} - ${form.fullName}`);
+  const body = encodeURIComponent(
+    buildInquiryMessage({
+      form,
+      serviceLabel,
+      preferredTime,
+    }),
+  );
+
+  return `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
+}
+
 function InquirePage() {
   const { service: preselected } = Route.useSearch();
   const { portfolio } = Route.useLoaderData();
   const [submitting, setSubmitting] = useState(false);
+  const [form, setForm] = useState<InquiryFormState>(INITIAL_FORM);
   const [serviceValue, setServiceValue] = useState<string | undefined>(preselected);
+  const [preferredTime, setPreferredTime] = useState<string>("");
   const selectedService = portfolio.find((s) => s.id === serviceValue);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      toast.success("Message sent! Our team will contact you within 24 hours.");
-      (e.target as HTMLFormElement).reset();
-    }, 800);
+
+    const serviceLabel =
+      selectedService?.title ??
+      (serviceValue === "laptop-repair"
+        ? "Doorstep Laptop Repair"
+        : serviceValue === "other"
+          ? "Other"
+          : "General Inquiry");
+
+    const whatsappMessage = buildInquiryMessage({
+      form,
+      serviceLabel,
+      preferredTime,
+    });
+
+    window.open(whatsappHref(whatsappMessage), "_blank", "noopener,noreferrer");
+    window.location.href = buildInquiryMailto({
+      form,
+      serviceLabel,
+      preferredTime,
+    });
+
+    toast.success("Opening WhatsApp and email with your formatted inquiry.");
+    setSubmitting(false);
+    setForm(INITIAL_FORM);
+    setServiceValue(preselected);
+    setPreferredTime("");
   };
 
   return (
@@ -69,15 +149,31 @@ function InquirePage() {
               <div className="grid gap-5 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label>Full Name</Label>
-                  <Input required placeholder="Enter your full name" />
+                  <Input
+                    required
+                    placeholder="Enter your full name"
+                    value={form.fullName}
+                    onChange={(e) => setForm((current) => ({ ...current, fullName: e.target.value }))}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label>Email Address</Label>
-                  <Input type="email" required placeholder="name@company.com" />
+                  <Input
+                    type="email"
+                    required
+                    placeholder="name@company.com"
+                    value={form.email}
+                    onChange={(e) => setForm((current) => ({ ...current, email: e.target.value }))}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label>Phone Number</Label>
-                  <Input required placeholder="+91 00000 00000" />
+                  <Input
+                    required
+                    placeholder="+91 00000 00000"
+                    value={form.phone}
+                    onChange={(e) => setForm((current) => ({ ...current, phone: e.target.value }))}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label>Service Category</Label>
@@ -103,11 +199,15 @@ function InquirePage() {
                 </div>
                 <div className="space-y-2">
                   <Label>Preferred Date</Label>
-                  <Input type="date" />
+                  <Input
+                    type="date"
+                    value={form.preferredDate}
+                    onChange={(e) => setForm((current) => ({ ...current, preferredDate: e.target.value }))}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label>Preferred Time</Label>
-                  <Select>
+                  <Select value={preferredTime} onValueChange={setPreferredTime}>
                     <SelectTrigger><SelectValue placeholder="Select a slot" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="morning">Morning (10 AM - 1 PM)</SelectItem>
@@ -119,11 +219,16 @@ function InquirePage() {
               </div>
               <div className="space-y-2">
                 <Label>Query / Message</Label>
-                <Textarea rows={5} placeholder="How can we help you?" />
+                <Textarea
+                  rows={5}
+                  placeholder="How can we help you?"
+                  value={form.message}
+                  onChange={(e) => setForm((current) => ({ ...current, message: e.target.value }))}
+                />
               </div>
               <Button type="submit" size="lg" disabled={submitting} className="w-full gradient-primary shadow-elegant">
                 <Send className="mr-2 h-4 w-4" />
-                {submitting ? "Sending..." : "Send Message"}
+                {submitting ? "Preparing..." : "Send via WhatsApp & Email"}
               </Button>
             </form>
           </Card>
