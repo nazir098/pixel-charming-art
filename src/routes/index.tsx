@@ -17,13 +17,13 @@ import { CONTACT, telHref } from "@/lib/contact";
 import serverRack from "@/assets/server-rack.jpg";
 import itServicesHero from "@/assets/it-services-hero.jpg";
 
-import gTech from "@/assets/nehru-technician.jpg";
 import gLaptops from "@/assets/nehru-laptops.jpg";
 import gScreen from "@/assets/nehru-screen.jpg";
 import gParts from "@/assets/nehru-parts.jpg";
 import gDoorstep from "@/assets/nehru-doorstep.jpg";
 import gNetwork from "@/assets/nehru-it-infra.jpg";
 import gMobo from "@/assets/nehru-motherboard.jpg";
+import gOmc from "@/assets/project-omc-exterior.jpg";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -48,7 +48,7 @@ const services = getHomeServicesSync();
 const itServicesShowcase = getPortfolioServicesSync().slice(0, 6);
 
 const galleryItems: GalleryItem[] = [
-  { src: gTech, alt: "Technician at workbench", title: "Chip-level Repair", category: "Workshop", span: "lg" },
+  { src: gOmc, alt: "Odisha Mining Corporation office project under construction in Bhubaneswar", title: "OMC Office Project", category: "Current Project", span: "lg" },
   { src: gMobo, alt: "Motherboard diagnostics", title: "Board Diagnostics", category: "Workshop", span: "tall" },
   { src: gLaptops, alt: "Stack of laptops being repaired", title: "Daily Repairs", category: "Workshop", span: "md" },
   { src: gScreen, alt: "Laptop screen replacement", title: "Screen Replacement", category: "Service", span: "md" },
