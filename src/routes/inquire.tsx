@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Phone, MessageCircle, MapPin, Send, Mail } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -99,9 +99,11 @@ function InquirePage() {
   const [preferredTime, setPreferredTime] = useState<string>("");
   const selectedService = portfolio.find((s) => s.id === serviceValue);
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const channel = submitter?.value === "whatsapp" ? "whatsapp" : "email";
 
     const serviceLabel =
       selectedService?.title ??
@@ -117,14 +119,18 @@ function InquirePage() {
       preferredTime,
     });
 
-    window.open(whatsappHref(whatsappMessage), "_blank", "noopener,noreferrer");
-    window.location.href = buildInquiryMailto({
-      form,
-      serviceLabel,
-      preferredTime,
-    });
+    if (channel === "whatsapp") {
+      window.open(whatsappHref(whatsappMessage), "_blank", "noopener,noreferrer");
+      toast.success("Opening WhatsApp with your formatted inquiry.");
+    } else {
+      window.location.href = buildInquiryMailto({
+        form,
+        serviceLabel,
+        preferredTime,
+      });
+      toast.success("Opening your email app with the formatted inquiry.");
+    }
 
-    toast.success("Opening WhatsApp and email with your formatted inquiry.");
     setSubmitting(false);
     setForm(INITIAL_FORM);
     setServiceValue(preselected);
@@ -226,10 +232,23 @@ function InquirePage() {
                   onChange={(e) => setForm((current) => ({ ...current, message: e.target.value }))}
                 />
               </div>
-              <Button type="submit" size="lg" disabled={submitting} className="w-full gradient-primary shadow-elegant">
-                <Send className="mr-2 h-4 w-4" />
-                {submitting ? "Preparing..." : "Send via WhatsApp & Email"}
-              </Button>
+              <div className="grid gap-3 md:grid-cols-2">
+                <Button
+                  type="submit"
+                  value="whatsapp"
+                  size="lg"
+                  disabled={submitting}
+                  className="w-full text-primary-foreground shadow-elegant"
+                  style={{ background: "oklch(0.65 0.18 145)" }}
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  {submitting ? "Preparing..." : "Send via WhatsApp"}
+                </Button>
+                <Button type="submit" value="email" size="lg" disabled={submitting} className="w-full gradient-primary shadow-elegant">
+                  <Mail className="mr-2 h-4 w-4" />
+                  {submitting ? "Preparing..." : "Send via Email"}
+                </Button>
+              </div>
             </form>
           </Card>
 
