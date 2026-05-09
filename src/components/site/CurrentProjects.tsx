@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, Network, MonitorSmartphone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import projectExterior from "@/assets/project-odisha-exterior.jpg";
-import projectNetwork from "@/assets/project-odisha-network.jpg";
-import projectOffice from "@/assets/project-odisha-office.jpg";
+import projectExterior from "@/assets/project-omc-exterior.jpg";
+import projectFacade from "@/assets/project-omc-facade.jpg";
+import projectCrane from "@/assets/project-omc-crane.jpg";
 
 const highlights = [
-  { icon: Building2, label: "Government Sector" },
-  { icon: Network, label: "Structured Networking" },
-  { icon: MonitorSmartphone, label: "End-User Computing" },
+  { icon: Building2, label: "Public Sector Delivery" },
+  { icon: Network, label: "Network & Infrastructure Readiness" },
+  { icon: MonitorSmartphone, label: "Campus Technology Rollout" },
 ];
 
 export function CurrentProjects() {
@@ -22,12 +22,12 @@ export function CurrentProjects() {
             Current Projects
           </span>
           <h2 className="mt-3 font-display text-3xl font-extrabold md:text-5xl">
-            Delivering IT at <span className="text-gradient">government scale</span>
+            Supporting OMC at <span className="text-gradient">project scale</span>
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
-            WISHTEK is currently executing a large-scale IT deployment for a government building project in
-            Odisha — designing the network backbone, deploying end-user computing, and providing on-site
-            engineering support across the campus.
+            WISHTEK is currently supporting the Odisha Mining Corporation (OMC) project in Bhubaneswar with
+            on-site technology planning, infrastructure readiness, and execution support for the upcoming
+            office environment across the campus.
           </p>
         </div>
 
@@ -56,11 +56,12 @@ export function CurrentProjects() {
                   <MapPin className="h-3 w-3" /> Odisha · Live Project
                 </div>
                 <h3 className="mt-3 font-display text-2xl font-extrabold text-white md:text-3xl">
-                  Government Building IT Infrastructure
+                  Odisha Mining Corporation (OMC) Office Project
                 </h3>
                 <p className="mt-2 max-w-xl text-sm text-white/85">
-                  Campus-wide structured cabling, networking, server room build-out and end-user computing
-                  rollout for an Odisha government facility.
+                  Site execution support for a multi-floor OMC office development in Bhubaneswar, including
+                  network backbone planning, floor-wise technology readiness, and enterprise infrastructure
+                  coordination.
                 </p>
               </div>
             </div>
@@ -76,16 +77,16 @@ export function CurrentProjects() {
               className="group relative overflow-hidden rounded-2xl shadow-card ring-1 ring-border"
             >
               <img
-                src={projectNetwork}
-                alt="Network rack and structured cabling deployment on the Odisha government project"
+                src={projectFacade}
+                alt="Front facade progress for the Odisha Mining Corporation office project in Bhubaneswar"
                 loading="lazy"
                 width={1280}
                 height={896}
                 className="aspect-[4/3] h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-deep/85 to-transparent p-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-accent">Networking</p>
-                <p className="mt-1 font-display text-base font-bold text-white">Server Room & Cabling</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-accent">Civil & IT Coordination</p>
+                <p className="mt-1 font-display text-base font-bold text-white">Facade and Floor Plate Readiness</p>
               </div>
             </motion.div>
 
@@ -97,16 +98,16 @@ export function CurrentProjects() {
               className="group relative overflow-hidden rounded-2xl shadow-card ring-1 ring-border"
             >
               <img
-                src={projectOffice}
-                alt="End-user computing workstations rolled out across the government office floor"
+                src={projectCrane}
+                alt="Construction crane and upper structure view of the OMC office project"
                 loading="lazy"
                 width={1280}
                 height={896}
                 className="aspect-[4/3] h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary-deep/85 to-transparent p-4">
-                <p className="text-xs font-bold uppercase tracking-wider text-accent">End-User Computing</p>
-                <p className="mt-1 font-display text-base font-bold text-white">Workstation Deployment</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-accent">Execution Support</p>
+                <p className="mt-1 font-display text-base font-bold text-white">Infrastructure Planning in Progress</p>
               </div>
             </motion.div>
           </div>
