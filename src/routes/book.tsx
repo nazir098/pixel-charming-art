@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { CheckCircle2, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { BrandStrip } from "@/components/site/BrandStrip";
+import { CONTACT, whatsappHref } from "@/lib/contact";
 import expertImg from "@/assets/expert-service.jpg";
 
 export const Route = createFileRoute("/book")({
@@ -28,17 +29,79 @@ export const Route = createFileRoute("/book")({
   }),
 });
 
+type BookingFormState = {
+  fullName: string;
+  phone: string;
+  pickupAddress: string;
+};
+
+const INITIAL_FORM: BookingFormState = {
+  fullName: "",
+  phone: "",
+  pickupAddress: "",
+};
+
+function buildBookingMessage(params: {
+  form: BookingFormState;
+  issue: string;
+  preferredTime: string;
+}) {
+  const { form, issue, preferredTime } = params;
+
+  return [
+    "New doorstep repair booking from Wishtek website",
+    "",
+    `Name: ${form.fullName}`,
+    `Phone: ${form.phone}`,
+    `Pickup Address: ${form.pickupAddress}`,
+    `Laptop Issue: ${issue || "Not provided"}`,
+    `Preferred Pickup Time: ${preferredTime || "Not provided"}`,
+  ].join("\n");
+}
+
+function buildBookingMailto(params: {
+  form: BookingFormState;
+  issue: string;
+  preferredTime: string;
+}) {
+  const { form, issue, preferredTime } = params;
+  const subject = encodeURIComponent(`Doorstep Repair Booking - ${form.fullName}`);
+  const body = encodeURIComponent(
+    buildBookingMessage({
+      form,
+      issue,
+      preferredTime,
+    }),
+  );
+
+  return `mailto:${CONTACT.email}?subject=${subject}&body=${body}`;
+}
+
 function BookPage() {
   const [submitting, setSubmitting] = useState(false);
+  const [form, setForm] = useState<BookingFormState>(INITIAL_FORM);
+  const [issue, setIssue] = useState("");
+  const [preferredTime, setPreferredTime] = useState("");
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      toast.success("Booking confirmed! We'll call you to schedule pickup.");
-      (e.target as HTMLFormElement).reset();
-    }, 800);
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const channel = submitter?.value === "whatsapp" ? "whatsapp" : "email";
+    const message = buildBookingMessage({ form, issue, preferredTime });
+
+    if (channel === "whatsapp") {
+      window.open(whatsappHref(message), "_blank", "noopener,noreferrer");
+      toast.success("Opening WhatsApp with your booking details.");
+    } else {
+      window.location.href = buildBookingMailto({ form, issue, preferredTime });
+      toast.success("Opening your email app with the booking details.");
+    }
+
+    setSubmitting(false);
+    setForm(INITIAL_FORM);
+    setIssue("");
+    setPreferredTime("");
   };
 
   return (
@@ -59,21 +122,36 @@ function BookPage() {
               <div className="grid gap-5 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label>Full Name</Label>
-                  <Input required placeholder="e.g. Rahul Sharma" />
+                  <Input
+                    required
+                    placeholder="e.g. Rahul Sharma"
+                    value={form.fullName}
+                    onChange={(e) => setForm((current) => ({ ...current, fullName: e.target.value }))}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label>Phone Number</Label>
-                  <Input required placeholder="+91 00000 00000" />
+                  <Input
+                    required
+                    placeholder="+91 00000 00000"
+                    value={form.phone}
+                    onChange={(e) => setForm((current) => ({ ...current, phone: e.target.value }))}
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label>Pickup Address</Label>
-                <Textarea rows={3} placeholder="Full address including landmark, Gurugram" />
+                <Textarea
+                  rows={3}
+                  placeholder="Full address including landmark, Gurugram"
+                  value={form.pickupAddress}
+                  onChange={(e) => setForm((current) => ({ ...current, pickupAddress: e.target.value }))}
+                />
               </div>
               <div className="grid gap-5 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label>Laptop Issue</Label>
-                  <Select>
+                  <Select value={issue} onValueChange={setIssue}>
                     <SelectTrigger><SelectValue placeholder="Select the problem" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="screen">Screen Damage</SelectItem>
@@ -87,7 +165,7 @@ function BookPage() {
                 </div>
                 <div className="space-y-2">
                   <Label>Preferred Pickup Time</Label>
-                  <Select>
+                  <Select value={preferredTime} onValueChange={setPreferredTime}>
                     <SelectTrigger><SelectValue placeholder="Morning (10 AM - 1 PM)" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="morning">Morning (10 AM - 1 PM)</SelectItem>
@@ -97,10 +175,23 @@ function BookPage() {
                   </Select>
                 </div>
               </div>
-              <Button type="submit" size="lg" disabled={submitting} className="w-full gradient-primary shadow-elegant">
-                <ShieldCheck className="mr-2 h-4 w-4" />
-                {submitting ? "Confirming..." : "Confirm Booking"}
-              </Button>
+              <div className="grid gap-3 md:grid-cols-2">
+                <Button
+                  type="submit"
+                  value="whatsapp"
+                  size="lg"
+                  disabled={submitting}
+                  className="w-full text-primary-foreground shadow-elegant"
+                  style={{ background: "oklch(0.65 0.18 145)" }}
+                >
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  {submitting ? "Preparing..." : "Book via WhatsApp"}
+                </Button>
+                <Button type="submit" value="email" size="lg" disabled={submitting} className="w-full gradient-primary shadow-elegant">
+                  <Mail className="mr-2 h-4 w-4" />
+                  {submitting ? "Preparing..." : "Book via Email"}
+                </Button>
+              </div>
               <p className="text-center text-xs text-muted-foreground">
                 Certified engineers. Same-day diagnostics available.
               </p>
