@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { StickyCTA } from "@/components/site/StickyCTA";
+import { VercelAnalytics } from "@/components/site/VercelAnalytics";
 import { CONTACT } from "@/lib/contact";
 
 import appCss from "../styles.css?url";
@@ -138,6 +139,7 @@ function RootComponent() {
       <Outlet />
       <StickyCTA />
       <Toaster position="top-right" richColors />
+      <VercelAnalytics />
     </>
   );
 }
