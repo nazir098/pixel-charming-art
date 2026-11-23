@@ -41,9 +41,11 @@ export const Route = createFileRoute("/services/$serviceId")({
         { name: "description", content: desc.slice(0, 160) },
         { property: "og:title", content: title },
         { property: "og:description", content: desc.slice(0, 160) },
+        { property: "og:type", content: "website" },
         { property: "og:url", content: url },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: desc.slice(0, 160) },
+        { name: "twitter:card", content: "summary" },
       ],
       links: [{ rel: "canonical", href: url }],
     };
@@ -65,7 +67,7 @@ export const Route = createFileRoute("/services/$serviceId")({
       <SiteLayout>
         <section className="py-24 text-center">
           <h1 className="font-display text-3xl font-extrabold">Something went wrong</h1>
-          <p className="mt-3 text-muted-foreground">{error.message}</p>
+          <p className="mt-3 text-muted-foreground">{error instanceof Error ? error.message : "Please try again."}</p>
           <Button className="mt-6" onClick={() => { router.invalidate(); reset(); }}>Retry</Button>
         </section>
       </SiteLayout>

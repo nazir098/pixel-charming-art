@@ -9,6 +9,8 @@ export const Route = createFileRoute("/refund")({
       { name: "description", content: "Refund and cancellation policy for WISHTEK Technology repair and IT services." },
       { property: "og:title", content: "Refund Policy — WISHTEK Technology" },
       { property: "og:description", content: "Refund and cancellation policy for WISHTEK Technology repair and IT services." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: RefundPage,

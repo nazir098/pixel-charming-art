@@ -9,6 +9,8 @@ export const Route = createFileRoute("/privacy")({
       { name: "description", content: "How WISHTEK Technology collects, uses, and protects your personal information." },
       { property: "og:title", content: "Privacy Policy — WISHTEK Technology" },
       { property: "og:description", content: "How WISHTEK Technology collects, uses, and protects your personal information." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: PrivacyPage,

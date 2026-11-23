@@ -9,6 +9,8 @@ export const Route = createFileRoute("/terms")({
       { name: "description", content: "Terms and conditions governing the use of WISHTEK Technology repair and IT services." },
       { property: "og:title", content: "Terms of Service — WISHTEK Technology" },
       { property: "og:description", content: "Terms and conditions governing the use of WISHTEK Technology repair and IT services." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: TermsPage,
