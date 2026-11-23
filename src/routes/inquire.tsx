@@ -190,7 +190,6 @@ function InquirePage() {
                       </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="laptop-repair">Doorstep Laptop Repair</SelectItem>
                       {portfolio.map((s) => (
                         <SelectItem key={s.id} value={s.id}>{s.title}</SelectItem>
                       ))}

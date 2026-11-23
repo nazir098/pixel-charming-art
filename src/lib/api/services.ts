@@ -383,6 +383,7 @@ export async function fetchHomeServices(): Promise<HomeService[]> {
     return services.slice(0, 4).map((service) => ({
       id: service.id,
       icon: service.icon,
+      iconKey: service.iconKey,
       title: service.title,
       desc: service.desc,
       price: "Request quote",
