@@ -86,7 +86,7 @@ function HomePage() {
               titleAccent: "Trusted Service, Convenient Pickup",
               description:
                 "Alongside our enterprise IT services, we also offer doorstep laptop repair across Delhi NCR — genuine parts, certified technicians, transparent pricing and a 90-day warranty.",
-              primaryCta: { label: "Book Doorstep Pickup", to: "/book" },
+              primaryCta: { label: "Fix Laptop Now", to: "/book" },
               secondaryCta: { label: "View Repair Pricing", to: "/pricing" },
               image: heroTech,
               imageAlt: "WISHTEK certified technician performing doorstep laptop repair in Gurgaon",
